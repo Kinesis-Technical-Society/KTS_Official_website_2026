@@ -65,7 +65,7 @@ export default function Home() {
             </a>
             <a
               className="nav-link nav-underline-sky transition hover:text-zinc-900 dark:hover:text-white"
-              href="#team"
+              href="/team"
             >
               Team
             </a>
@@ -77,7 +77,7 @@ export default function Home() {
             </a>
             <a
               className="nav-link nav-underline-amber transition hover:text-zinc-900 dark:hover:text-white"
-              href="#events"
+              href="/event"
             >
               Events
             </a>
@@ -85,7 +85,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <button
-              className="rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/40"
+              className="rounded-xl border-2 border-zinc-900 bg-(--accent-lime) px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/40"
               type="button"
             >
               Contact
@@ -131,7 +131,7 @@ export default function Home() {
 
             <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
               <a
-                className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:translate-y-[-2px] dark:bg-[#f3f2eb] dark:text-[#121212]"
+                className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 dark:bg-[#f3f2eb] dark:text-[#121212]"
                 href="#join"
               >
                 <span>Join KTS</span>
@@ -148,7 +148,7 @@ export default function Home() {
                 </svg>
               </a>
               <a
-                className="flex items-center justify-center gap-2 rounded-xl border-2 border-[#121212] bg-white px-8 py-4 text-lg font-bold shadow-[4px_4px_0px_0px_#121212] transition-all hover:translate-y-[-2px] hover:bg-[#cbb6ff] hover:text-[#121212] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100 dark:shadow-[4px_4px_0px_0px_#f3f2eb] dark:hover:bg-[#7c3aed] dark:hover:text-white"
+                className="flex items-center justify-center gap-2 rounded-xl border-2 border-[#121212] bg-white px-8 py-4 text-lg font-bold shadow-[4px_4px_0px_0px_#121212] transition-all hover:-translate-y-0.5 hover:bg-[#cbb6ff] hover:text-[#121212] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100 dark:shadow-[4px_4px_0px_0px_#f3f2eb] dark:hover:bg-[#7c3aed] dark:hover:text-white"
                 href="#projects"
               >
                 View Projects
@@ -157,12 +157,12 @@ export default function Home() {
           </div>
 
           <div className="hero-rise hero-rise-delay-2 relative lg:flex lg:flex-col lg:justify-end">
-            <div className="hero-float pointer-events-none absolute -right-2 top-[45%] h-16 w-16 -translate-y-1/2 rounded-2xl border-2 border-zinc-900 bg-[var(--accent-lavender)] text-zinc-900 shadow-[0_4px_0_#111] dark:border-zinc-200/40 dark:text-zinc-100">
+            <div className="hero-float pointer-events-none absolute -right-2 top-[45%] h-16 w-16 -translate-y-1/2 rounded-2xl border-2 border-zinc-900 bg-(--accent-lavender) text-zinc-900 shadow-[0_4px_0_#111] dark:border-zinc-200/40 dark:text-zinc-100">
               <div className="flex h-full items-center justify-center text-lg font-bold">
                 &lt;/&gt;
               </div>
             </div>
-            <div className="hero-float pointer-events-none absolute -left-24 bottom-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-zinc-900 bg-[var(--accent-sky)] text-2xl font-bold text-zinc-900 shadow-[0_4px_0_#111] dark:border-zinc-200/40 dark:text-zinc-100">
+            <div className="hero-float pointer-events-none absolute -left-24 bottom-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-zinc-900 bg-(--accent-sky) text-2xl font-bold text-zinc-900 shadow-[0_4px_0_#111] dark:border-zinc-200/40 dark:text-zinc-100">
               *
             </div>
 
@@ -191,7 +191,7 @@ export default function Home() {
                     packages...
                   </p>
                   <div className="h-2 rounded-full border-2 border-zinc-900 bg-zinc-100 dark:border-zinc-200/30 dark:bg-zinc-800">
-                    <div className="h-full w-3/4 rounded-full bg-[var(--accent-lime)]" />
+                    <div className="h-full w-3/4 rounded-full bg-(--accent-lime)" />
                   </div>
                   <p className="text-emerald-600">Success! Welcome to KTS.</p>
                 </div>
@@ -234,7 +234,7 @@ export default function Home() {
           </div>
         </div>
 
-        <section className="full-bleed border-b border-zinc-900/20 bg-[var(--background)] dark:border-zinc-200/15">
+        <section className="full-bleed border-b border-zinc-900/20 bg-background dark:border-zinc-200/15">
           <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-[1.05fr_1.6fr]">
             <div className="flex flex-col gap-6 border-zinc-900/20 lg:border-r lg:pr-10 dark:border-zinc-200/15">
               <span className="h-12 w-1 bg-emerald-600" />
@@ -256,7 +256,7 @@ export default function Home() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-400">
                   01
                 </span>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-(--accent-lime) text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
                   &lt;&gt;
                 </span>
                 <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
@@ -271,7 +271,7 @@ export default function Home() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-400">
                   02
                 </span>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-lavender)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-(--accent-lavender) text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
                   <svg
                     aria-hidden="true"
                     className="h-5 w-5"
@@ -297,7 +297,7 @@ export default function Home() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-400">
                   03
                 </span>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-sky)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-(--accent-sky) text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30">
                   <svg
                     aria-hidden="true"
                     className="h-5 w-5"
@@ -322,7 +322,7 @@ export default function Home() {
                 <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400 dark:text-zinc-400">
                   04
                 </span>
-                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-amber)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30 dark:bg-[var(--accent-amber)] dark:text-zinc-900">
+                <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-(--accent-amber) text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/30 dark:bg-(--accent-amber) dark:text-zinc-900">
                   <svg
                     aria-hidden="true"
                     className="h-5 w-5"
@@ -346,9 +346,9 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="full-bleed border-b border-zinc-900/20 bg-[var(--background)] dark:border-zinc-200/20">
+        <section className="full-bleed border-b border-zinc-900/20 bg-background dark:border-zinc-200/20">
           <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[1.1fr_1fr]">
-            <div className="relative flex items-center justify-center bg-[var(--background)] px-6 py-14 text-emerald-900 dark:text-emerald-200">
+            <div className="relative flex items-center justify-center bg-background px-6 py-14 text-emerald-900 dark:text-emerald-200">
               <div className="pointer-events-none absolute inset-0">
                 <span className="absolute left-6 top-6 h-4 w-4 border-l border-t border-emerald-700/40 dark:border-emerald-400/60" />
                 <span className="absolute right-6 top-6 h-4 w-4 border-r border-t border-emerald-700/40 dark:border-emerald-400/60" />
@@ -356,7 +356,7 @@ export default function Home() {
                 <span className="absolute bottom-6 right-6 h-4 w-4 border-b border-r border-emerald-700/40 dark:border-emerald-400/60" />
               </div>
               <div className="absolute left-1/2 top-6 flex -translate-x-1/2 items-center gap-2 rounded-md border border-emerald-700/40 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-900 dark:border-emerald-400/50 dark:bg-black/70 dark:text-emerald-200">
-                <span className="h-2 w-2 rounded-full bg-[var(--accent-lime)] shadow-[0_0_8px_rgba(188,249,84,0.8)]" />
+                <span className="h-2 w-2 rounded-full bg-(--accent-lime) shadow-[0_0_8px_rgba(188,249,84,0.8)]" />
                 Live
               </div>
               <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-emerald-700/25 bg-white/85 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.18)] dark:border-emerald-400/20 dark:bg-black/80 dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]">
@@ -369,7 +369,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 bg-[var(--background)] px-8 py-14 text-zinc-900 sm:px-12 dark:text-zinc-100 lg:border-l lg:border-zinc-900/10 dark:lg:border-zinc-200/10">
+            <div className="flex flex-col gap-6 bg-background px-8 py-14 text-zinc-900 sm:px-12 dark:text-zinc-100 lg:border-l lg:border-zinc-900/10 dark:lg:border-zinc-200/10">
               <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-400">
                 <span className="h-px w-12 bg-zinc-300 dark:bg-zinc-600" />
                 The culture
@@ -461,7 +461,7 @@ export default function Home() {
         </section>
 
         <section
-          className="full-bleed border-y-2 border-[var(--section-border)] bg-[var(--background)]"
+          className="full-bleed border-y-2 border-(--section-border) bg-background"
           style={{
             backgroundImage: "radial-gradient(var(--contact-dot) 1px, transparent 1px)",
             backgroundSize: "16px 16px",
@@ -482,7 +482,7 @@ export default function Home() {
             </a>
           </div>
 
-          <footer className="border-t-2 border-[var(--section-border)] bg-[var(--background)]">
+          <footer className="border-t-2 border-(--section-border) bg-background">
             <div className="mx-auto w-full max-w-7xl px-4 py-6 text-sm text-zinc-600 sm:px-6 dark:text-zinc-400">
               <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
                 <div className="flex items-center justify-center gap-3 lg:justify-start">
@@ -513,7 +513,7 @@ export default function Home() {
                         className="group relative"
                       >
                         <div
-                          className={`contrib-avatar flex items-center justify-center text-[11px] font-semibold text-white bg-gradient-to-br ${avatarColors[index % avatarColors.length]
+                          className={`contrib-avatar flex items-center justify-center text-[11px] font-semibold text-white bg-linear-to-br ${avatarColors[index % avatarColors.length]}
                             }`}
                         >
                           {getInitials(person.name)}

@@ -1,0 +1,104 @@
+[
+  {
+    "name": "Vaibhav Mishra",
+    "role": "President",
+    "photo": "/coreteam/president.png",
+    "bio": "Leading with vision and purpose, I strive to empower our team and ensure every initiative aligns with our mission.",
+    "linkedin": "https://www.linkedin.com/in/vaibhav-mishra-a60736294/",
+    "github": "https://github.com/V1629"
+  },
+  {
+    "name": "Yash pratap singh",
+    "role": "Vice President",
+    "photo": "/coreteam/vicepresident.jpeg",
+    "bio": "As Vice President, I focus on driving vision into action by supporting every team effort and ensuring our community thrives through shared leadership and innovation.",
+    "linkedin": "https://www.linkedin.com/in/yash-pratap-singh-9012362a8/",
+    "github": "https://github.com/yash636768"
+  },
+  {
+    "name": "Arsh Prabhat",
+    "role": "General Secretary",
+    "photo": "/coreteam/secretary.jpeg",
+    "bio": "As General Secretary, I focus on seamless coordination and fostering a community built on collaboration and excellence.",
+    "linkedin": "https://www.linkedin.com/in/arsh-prabhat/"
+  },
+  {
+    "name": "Nancy Gupta",
+    "role": "PR Lead",
+    "photo": "/coreteam/prlead.jpeg",
+    "bio": "As PR Lead, I focus on building strong external connections and ensuring our vision reaches a wider audience.",
+    "linkedin": "https://www.linkedin.com/in/nancygupta29/",
+    "github": "https://github.com/nancygupta2912"
+  },
+  {
+    "name": "Vashu Jain",
+    "role": "Technical Lead",
+    "photo": "/coreteam/technical_lead.jpeg",
+    "bio": "As Technical Head of KTS, I lead tech development and innovation, guiding the team to build impactful web applications and manage digital infrastructure.",
+    "linkedin": "https://www.linkedin.com/in/vashujain/",
+    "github": "https://github.com/VashuJain2024"
+  },
+  {
+    "name": "Anshika Middha",
+    "role": "Management Lead",
+    "photo": "/coreteam/management_lead.jpeg",
+    "bio": "Drives teams with structure and clarity — turning ideas into well-executed events and impactful initiatives.",
+    "linkedin": "https://www.linkedin.com/in/anshika-middha-599a9129b/",
+    "github": "https://github.com/anshikamiddha"
+  },
+  {
+    "name": "Vivek Kumar Gupta",
+    "role": "Web Lead",
+    "photo": "/coreteam/web_lead.jpeg",
+    "bio": "As WebD Lead, I focus on clean, efficient, and scalable web solutions that enhance user experience and performance.",
+    "linkedin": "https://www.linkedin.com/in/learnervivek/",
+    "github": "https://github.com/learnervivek"
+  },
+  {
+    "name": "Gaurav Verma",
+    "role": "DSA Lead",
+    "photo": "/coreteam/dsa_lead.jpeg",
+    "bio": "As DSA Lead, I strive to make data structures and algorithms accessible and engaging, empowering peers to grow through consistency and problem-solving excellence.",
+    "linkedin": "https://www.linkedin.com/in/gaurav-verma23/",
+    "github": "https://github.com/Gvermag-23"
+  },
+  {
+    "name": "Aniket Yadav",
+    "role": "ML Lead",
+    "photo": "/coreteam/ml_lead.jpeg",
+    "bio": "As ML Lead, I explore intelligent systems and build smart solutions that push the boundaries of innovation.",
+    "linkedin": "https://www.linkedin.com/in/aniket-yadav-work22/",
+    "github": "https://github.com/aniketyadav-22"
+  },
+  {
+    "name": "Arsh Prabhat",
+    "role": "UI/UX Lead",
+    "photo": "/coreteam/ui_lead.jpeg",
+    "bio": "As UI/UX Lead, I craft intuitive and visually appealing designs that ensure seamless user interaction and satisfaction.",
+    "linkedin": "https://www.linkedin.com/in/arsh-prabhat/"
+  },
+  {
+    "name": "Rishita Pandey",
+    "role": "Android Lead",
+    "photo": "/coreteam/android_lead.jpeg",
+    "bio": "Crafting seamless Android experiences with precision and performance — turning ideas into intuitive mobile solutions.",
+    "linkedin": "https://www.linkedin.com/in/rishita-pandey/",
+    "github": "https://github.com/RishitaPandey2327"
+  },
+  {
+    "name": "Srajan Paliwal",
+    "role": "Events Lead",
+    "photo": "/coreteam/event_lead.jpeg",
+    "bio": "As Event Lead, I bring our ideas to life through impactful events that engage, inspire, and build community.",
+    "linkedin": "https://www.linkedin.com/in/srajan-paliwal-2287132a8/",
+    "github": "http://github.com/srajanpaliwal"
+  },
+  {
+    "name": "Vidushi Sharma",
+    "role": "Project Lead",
+    "photo": "/coreteam/project_lead.jpeg",
+    "bio": "As Project Lead, I manage and streamline project development, ensuring timely delivery and impactful outcomes.",
+    "linkedin": "https://www.linkedin.com/in/vidushi-sharma12/",
+    "github": "https://github.com/vidushish"
+  }
+]
