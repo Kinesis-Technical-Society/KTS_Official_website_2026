@@ -1,10 +1,9 @@
 "use client";
 import CoreTeamCarousel from "./CoreTeamCarousel";
 
-function SectionLabel({ number, label }: { number: string; label: string }) {
+function SectionLabel({ label }: { label: string }) {
   return (
     <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
-      <span>{number}</span>
       <span className="h-px w-10 bg-zinc-300 dark:bg-zinc-600" />
       <span>{label}</span>
     </div>
@@ -17,7 +16,7 @@ export default function CoreTeamSection() {
       <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
 
         <div className="mb-12 flex flex-col gap-4">
-          <SectionLabel number="02" label="The Builders" />
+          <SectionLabel label="The Builders" />
           <div className="flex items-end justify-between gap-4 flex-wrap">
             <div className="flex flex-col gap-3">
               <span className="h-12 w-1 bg-emerald-600" />

@@ -1,0 +1,264 @@
+[
+  {
+  "id": 1,
+  "title": "Kode Kombat 5.0 — Annual Coding Competition",
+  "date": "February 7–17, 2026",
+  "status": "past",
+  "description": "Kode Kombat 5.0 was the annual coding competition organized by Kinesis Technical Society (KTS), focused on promoting Data Structures & Algorithms (DSA) and Competitive Programming among students. The event aimed to strengthen problem-solving skills, logical thinking, and coding proficiency through a structured competitive environment.",
+  "tags": ["DSA", "Competitive Programming", "Coding", "HackerRank", "CodeChef"],
+  "participants": 80,
+  "highlights": [
+    "300+ student registrations",
+    "Open to 1st–3rd year students",
+    "Two-round competition format",
+    "Online screening on HackerRank",
+    "Offline final round on CodeChef",
+    "Strong focus on DSA and problem solving"
+  ],
+  "prize": "Winners recognized across all years",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/kodekombat_26/kk1.png",
+  "accent": "#fcd34d",
+  "gradient": "linear-gradient(135deg,#1a1405 0%,#0e0e0e 100%)",
+   "photos": [
+  "/events/kodekombat_26/img6.jpg",
+  "/events/kodekombat_26/img2.jpg",
+  "/events/kodekombat_26/img3.jpg",
+  "/events/kodekombat_26/img4.jpg"
+],
+  "photoColors": []
+},
+{
+  "id": 2,
+  "title": "Flashmob Performance — Epoque Cultural Fest",
+  "date": "April 2026",
+  "status": "past",
+  "description": "A high-energy flashmob performance by our club during Epoque, the annual cultural fest of the college. The act blended synchronized choreography, expressive movements, and engaging music to captivate the audience and create a vibrant festive atmosphere.",
+  "tags": ["Dance", "Flashmob", "Cultural Fest", "Performance", "Teamwork"],
+  "participants": 25,
+  "highlights": [
+    "Energetic flashmob performance at Epoque",
+    "Strong team coordination and synchronization",
+    "Engaged large audience crowd",
+    "Mix of multiple dance styles",
+    "Performed at prime fest hours",
+    "Received great audience response and cheers"
+  ],
+  "prize": "Participation & Audience Appreciation",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/flashmob/img2.jpg",
+  "accent": "#fb7185",
+  "gradient": "linear-gradient(135deg,#1a0b0b 0%,#0e0e0e 100%)",
+  "photos": [
+   "/events/flashmob/img1.jpg",
+   "/events/flashmob/img3.jpg",
+   "/events/flashmob/img4.jpg",
+   "/events/flashmob/img5.jpg"
+   
+  ],
+  "photoColors": []
+},
+  {
+  "id": 3,
+  "title": "Git & GitHub Session",
+  "date": "December 8, 2025",
+  "status": "past",
+  "description": "A hands-on session focused on getting started with Git and GitHub. Covered version control basics, repositories, commits, branching, and collaboration workflows.",
+  "tags": ["Git", "GitHub", "Version Control"],
+  "participants": 20,
+  "highlights": [
+    "Beginner-friendly session",
+    "Hands-on practice",
+    "Real project workflow",
+    "Doubt-solving"
+  ],
+  "prize": "—",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/git_session/img5.jpg",
+  "accent": "#bcf954",
+  "gradient": "linear-gradient(135deg,#0a1a02 0%,#0e0e0e 100%)",
+ "photos": [
+  "/events/git_session/img1.jpg",
+ "/events/git_session/img2.jpg",
+ "/events/git_session/img3.jpg",
+"/events/git_session/img4.jpg"
+],
+  "photoColors": []
+},
+{
+  "id": 4,
+  "title": "Innotech — Technical Project Exhibition",
+  "date": "November 2026",
+  "status": "past",
+  "description": "Innotech is a college-level technical project exhibition where students from various clubs and departments showcase innovative projects. Kinesis Technical Society (KTS) actively participated in the event, presenting student-built projects and engaging with peers and faculty.",
+  "tags": ["Projects", "Innovation", "Exhibition", "AI", "IoT"],
+  "participants": 20,
+  "highlights": [
+    "Technical project exhibition across departments",
+    "KTS participation with project showcase",
+ 
+    "Peer-to-peer technical interaction",
+    "Faculty evaluation & feedback sessions",
+    "Showcase of innovative ideas"
+  ],
+  "prize": "Certificates & recognition (for selected projects)",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/innotech/img1.jpg",
+  "accent": "#38bdf8",
+  "gradient": "linear-gradient(135deg,#071a1a 0%,#0e0e0e 100%)",
+   "photos": [
+  "/events/innotech/img2.jpg",
+ "/events/innotech/img3.jpg",
+ "/events/innotech/img4.jpg",
+"/events/innotech/img5.jpg"
+],
+  "photoColors": []
+},
+{
+  "id": 5,
+  "title": "DataVerse 2025 — National Level Hackathon",
+  "date": "November 2025",
+  "status": "past",
+  "description": "DataVerse is a national-level hackathon at KIET that brought together students from across the country to build practical and innovative solutions. Along with the 24-hour sprint, the event also featured sessions by industry experts and creators.",
+  "tags": ["Hackathon", "Innovation", "Technology"],
+  "participants": 200,
+  "highlights": [
+    "1100+ registrations on Unstop",
+    "24-hour hackathon",
+    "Participation from multiple states",
+    "Speaker sessions by industry experts",
+    "Internship & networking opportunities"
+  ],
+  "prize": "Prizes & goodies",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/dataverse/dataverse.JPG",
+  "accent": "#cbb6ff",
+  "gradient": "linear-gradient(135deg,#0d0a1a 0%,#0e0e0e 100%)",
+  "photos": [
+    "/events/dataverse/dv_winner.JPG",
+    "/events/dataverse/img1.jpg",
+    "/events/dataverse/img2.jpeg",
+    "/events/dataverse/dv_1stRunnerUp.JPG"
+  ],
+  "photoColors": []
+},
+  {
+  "id": 6,
+  "title": "CodeCore — NLP Bootcamp by KTS",
+  "date": "April 2025",
+  "status": "past",
+  "description": "CodeCore is an immersive bootcamp organized by Kinesis Technical Society (KTS), introducing students to Natural Language Processing (NLP) along with Python fundamentals. The session focused on practical learning and real-world AI applications.",
+  "tags": ["NLP", "Python", "AI", "Machine Learning"],
+  "participants": 30,
+  "highlights": [
+    "Python programming fundamentals",
+    "Text preprocessing & tokenization",
+    "NLP libraries: NLTK & Scikit-learn",
+    "Fake news detection model",
+    "AI for real-world media applications"
+  ],
+  "prize": "—",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/codecore/codecore.webp",
+  "accent": "#a7f3d0",
+  "gradient": "linear-gradient(135deg,#071a12 0%,#0e0e0e 100%)",
+"photos": [
+  "/events/codecore/codecore1.jpeg",
+  "/events/codecore/codecore2.jpeg",
+  "/events/codecore/codecore3.jpeg",
+  "/events/codecore/codecore4.jpeg"
+
+   
+],
+  "photoColors": []
+},
+  {
+  "id": 7,
+  "title": "Kode Kombat 4.0— Annual Coding Competition",
+  "date": "DECEMBER 2024",
+  "status": "past",
+  "description": "Kode Kombat is the flagship coding competition organized annually by Kinesis Technical Society (KTS). It is designed to build competitive programming skills and strengthen problem-solving abilities among students.",
+  "tags": ["Competitive Programming", "Coding", "DSA"],
+  "participants": 0,
+  "highlights": [
+    "Hosted on HackerRank",
+    "Open to 1st–3rd year students",
+    "Timed coding challenges",
+    "Increasing difficulty rounds",
+    "Certificates and recognition",
+    "Placement preparation focus"
+  ],
+  "prize": "Certificates, prizes & recognition",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/kodekombat_25/kodekombat.webp",
+  "accent": "#fcd34d",
+  "gradient": "linear-gradient(135deg,#1a1405 0%,#0e0e0e 100%)",
+ "photos": [
+  "/events/kodekombat_25/kodekombat1.jpeg",
+  "/events/kodekombat_25/kodekombat2.jpeg",
+  "/events/kodekombat_25/kodekombat3.jpeg",
+  "/events/kodekombat_25/kodekombat4.jpeg"
+   
+],
+  "photoColors": []
+},
+  {
+  "id": 8,
+  "title": "NASA Space Apps Challenge 2024 — Ghaziabad",
+  "date": "October 2024",
+  "status": "past",
+  "description": "Kinesis Technical Society (KTS) had the honor of hosting the NASA Space Apps Challenge 2024 — Ghaziabad, the world’s largest international hackathon, on campus. The event brought together students to solve real-world problems through innovation and collaboration.",
+  "tags": ["NASA", "Hackathon", "AI", "Innovation"],
+  "participants": 50,
+  "highlights": [
+   
+    "Interdisciplinary team collaboration",
+    "Climate change challenges",
+    "Space exploration problems",
+    "Earth observation & AI solutions",
+    "International participation spirit"
+  ],
+  "prize": "Recognition & certificates",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/nasa_challenge/nasa5.png",
+  "accent": "#60a5fa",
+  "gradient": "linear-gradient(135deg,#061a2a 0%,#0e0e0e 100%)",
+   "photos": [
+  "/events/nasa_challenge/nasa1.jpeg",
+   "/events/nasa_challenge/nasa2.jpeg",
+   "/events/nasa_challenge/nasa3.jpeg",
+    "/events/nasa_challenge/nasa4.webp"
+],
+  "photoColors": []
+},
+ {
+  "id": 9,
+  "title": "Pixel to Code — Build Your Portfolio from Scratch",
+  "date": "July 2024",
+  "status": "past",
+  "description": "Pixel to Code was a hands-on web development workshop organized by Kinesis Technical Society (KTS), focused on helping students build personal portfolio websites from scratch.",
+  "tags": ["Web Development", "HTML", "CSS", "JavaScript"],
+  "participants": 30,
+  "highlights": [
+    "HTML, CSS & JavaScript basics",
+    "UI/UX fundamentals & wireframing",
+    "Live coding sessions with mentors",
+    "GitHub & Netlify deployment",
+    "Each student built a live portfolio website"
+  ],
+  "prize": "—",
+  "location": "KIET Group of Institutions, Ghaziabad",
+  "image": "/events/pixeltocode/pixeltocode.webp",
+  "accent": "#f472b6",
+  "gradient": "linear-gradient(135deg,#1a0b12 0%,#0e0e0e 100%)",
+  "photos": [
+  "/events/pixeltocode/pixel1.jpeg",
+   "/events/pixeltocode/pixel2.jpeg",
+   "/events/pixeltocode/pixel3.jpeg",
+    "/events/pixeltocode/pixel4.jpeg"
+],
+  "photoColors": []
+}
+
+ 
+]
