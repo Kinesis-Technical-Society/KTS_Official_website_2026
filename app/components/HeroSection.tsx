@@ -69,7 +69,7 @@ export default function HeroSection() {
             &lt;/&gt;
           </div>
         </div>
-        <div className="hero-float pointer-events-none absolute -left-4 bottom-4 z-20 hidden h-12 w-12 items-center justify-center rounded-full border-2 border-zinc-900 bg-[var(--accent-sky)] text-xl font-bold text-zinc-900 shadow-[0_4px_0_#111] sm:-left-6 sm:h-16 sm:w-16 sm:text-2xl md:flex dark:border-zinc-200/40 dark:text-zinc-100">
+        <div className="hero-float pointer-events-none absolute -left-4 bottom-4 z-20 hidden h-12 w-12 items-center justify-center rounded-full border-2 border-zinc-900 bg-[var(--accent-sky)] text-xl font-bold text-zinc-900 shadow-[0_4px_0_#111] sm:-left-12 sm:h-16 sm:w-16 sm:text-2xl md:flex dark:border-zinc-200/40 dark:text-zinc-100">
           *
         </div>
 

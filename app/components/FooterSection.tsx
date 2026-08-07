@@ -33,7 +33,7 @@ export default function FooterSection() {
       .toUpperCase();
 
   return (
-    <footer className="full-bleed border-y-2 border-[var(--section-border)] bg-background">
+    <footer className="full-bleed border-[var(--section-border)] bg-background">
       <div className="mx-auto w-full max-w-7xl px-4 py-6 text-sm text-zinc-600 sm:px-6 dark:text-zinc-400">
         <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
           <Link href="/" className="cursor-pointer hover:bg-transparent hover:text-inherit">

@@ -1,7 +1,7 @@
 export default function ContactSection() {
   return (
     <div
-      className="full-bleed border-t-2 border-[var(--section-border)] bg-background"
+      className="full-bleed border-2 border-[var(--section-border)] bg-background"
       style={{
         backgroundImage:
           "radial-gradient(var(--contact-dot) 1px, transparent 1px)",
