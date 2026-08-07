@@ -8,8 +8,8 @@ import FooterSection from "./components/FooterSection";
 
 export default function Home() {
   return (
-    <main className="hero-grid flex-1">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-20 px-4 pb-0 pt-6 sm:px-6">
+    <main className="hero-grid flex-1 w-full overflow-x-hidden">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-12 sm:gap-20 px-4 pb-0 pt-4 sm:pt-6 sm:px-6">
         <Navbar />
         <HeroSection />
         <MarqueeSection />

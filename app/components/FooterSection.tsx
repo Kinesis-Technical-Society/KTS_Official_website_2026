@@ -33,14 +33,14 @@ export default function FooterSection() {
       .toUpperCase();
 
   return (
-    <footer className="full-bleed border-y-2 border-(--section-border) bg-background">
+    <footer className="full-bleed border-y-2 border-[var(--section-border)] bg-background">
       <div className="mx-auto w-full max-w-7xl px-4 py-6 text-sm text-zinc-600 sm:px-6 dark:text-zinc-400">
         <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
           <Link href="/" className="cursor-pointer hover:bg-transparent hover:text-inherit">
             <div className="flex items-center justify-center gap-3 lg:justify-start">
               <div className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
                 <Image
-                  src="/kts-logo.png"
+                  src="/kts-logo.webp"
                   alt="Kinesis Technical Society logo"
                   width={28}
                   height={28}
@@ -56,7 +56,7 @@ export default function FooterSection() {
             <span className="text-xs font-semibold uppercase tracking-[0.28em] text-zinc-500 dark:text-zinc-400">
               Our Amazing Contributors
             </span>
-            <div className="flex items-center -space-x-2">
+            <div className="flex flex-wrap items-center justify-center -space-x-1.5 py-1 sm:-space-x-2">
               {(contributors as Contributor[]).map((person, index) => (
                 <a
                   key={person.name}
@@ -64,14 +64,14 @@ export default function FooterSection() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`${person.name} - ${person.role}`}
-                  className="group relative"
+                  className="group relative my-0.5"
                 >
                   <div
                     className={`contrib-avatar flex items-center justify-center text-[11px] font-semibold text-white bg-linear-to-br ${avatarColors[index % avatarColors.length]}`}
                   >
                     {getInitials(person.name)}
                   </div>
-                  <span className="pointer-events-none absolute -top-10 left-1/2 z-10 w-max -translate-x-1/2 rounded-lg border border-zinc-900/30 bg-white px-3 py-1 text-xs font-semibold text-zinc-900 opacity-0 shadow-[0_6px_14px_rgba(0,0,0,0.15)] transition group-hover:opacity-100 dark:border-zinc-200/20 dark:bg-[#151515] dark:text-zinc-100">
+                  <span className="pointer-events-none absolute -top-10 left-1/2 z-10 hidden w-max -translate-x-1/2 rounded-lg border border-zinc-900/30 bg-white px-3 py-1 text-xs font-semibold text-zinc-900 opacity-0 shadow-[0_6px_14px_rgba(0,0,0,0.15)] transition group-hover:opacity-100 sm:block dark:border-zinc-200/20 dark:bg-[#151515] dark:text-zinc-100">
                     {person.name}
                     <span className="ml-2 text-[10px] uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
                       {person.role}

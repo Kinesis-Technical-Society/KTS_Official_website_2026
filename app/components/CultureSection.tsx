@@ -4,18 +4,18 @@ export default function CultureSection() {
   return (
     <section className="full-bleed border-b border-zinc-900/20 bg-background dark:border-zinc-200/20">
       <div className="mx-auto grid w-full max-w-7xl lg:grid-cols-[1.1fr_1fr]">
-        <div className="relative flex items-center justify-center bg-background px-6 py-14 text-emerald-900 dark:text-emerald-200">
+        <div className="relative flex items-center justify-center bg-background px-4 py-10 sm:px-6 sm:py-14 text-emerald-900 dark:text-emerald-200">
           <div className="pointer-events-none absolute inset-0">
-            <span className="absolute left-6 top-6 h-4 w-4 border-l border-t border-emerald-700/40 dark:border-emerald-400/60" />
-            <span className="absolute right-6 top-6 h-4 w-4 border-r border-t border-emerald-700/40 dark:border-emerald-400/60" />
-            <span className="absolute bottom-6 left-6 h-4 w-4 border-b border-l border-emerald-700/40 dark:border-emerald-400/60" />
-            <span className="absolute bottom-6 right-6 h-4 w-4 border-b border-r border-emerald-700/40 dark:border-emerald-400/60" />
+            <span className="absolute left-3 top-3 h-4 w-4 border-l border-t border-emerald-700/40 sm:left-6 sm:top-6 dark:border-emerald-400/60" />
+            <span className="absolute right-3 top-3 h-4 w-4 border-r border-t border-emerald-700/40 sm:right-6 sm:top-6 dark:border-emerald-400/60" />
+            <span className="absolute bottom-3 left-3 h-4 w-4 border-b border-l border-emerald-700/40 sm:bottom-6 sm:left-6 dark:border-emerald-400/60" />
+            <span className="absolute bottom-3 right-3 h-4 w-4 border-b border-r border-emerald-700/40 sm:bottom-6 sm:right-6 dark:border-emerald-400/60" />
           </div>
-          <div className="absolute left-1/2 top-6 flex -translate-x-1/2 items-center gap-2 rounded-md border border-emerald-700/40 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-900 dark:border-emerald-400/50 dark:bg-black/70 dark:text-emerald-200">
-            <span className="h-2 w-2 rounded-full bg-(--accent-lime) shadow-[0_0_8px_rgba(188,249,84,0.8)]" />
+          <div className="absolute left-1/2 top-4 sm:top-6 flex -translate-x-1/2 items-center gap-2 rounded-md border border-emerald-700/40 bg-white/80 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.3em] text-emerald-900 dark:border-emerald-400/50 dark:bg-black/70 dark:text-emerald-200">
+            <span className="h-2 w-2 rounded-full bg-[var(--accent-lime)] shadow-[0_0_8px_rgba(188,249,84,0.8)]" />
             Live
           </div>
-          <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-emerald-700/25 bg-white/85 p-4 shadow-[0_16px_40px_rgba(15,23,42,0.18)] dark:border-emerald-400/20 dark:bg-black/80 dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)]">
+          <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-emerald-700/25 bg-white/85 p-3 sm:p-4 shadow-[0_16px_40px_rgba(15,23,42,0.18)] dark:border-emerald-400/20 dark:bg-black/80 dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)] mt-4 sm:mt-0">
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(188,249,84,0.12),transparent_55%)]" />
             <Image
               src="/kts-showcase.gif"
@@ -28,12 +28,12 @@ export default function CultureSection() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-6 bg-background px-8 py-14 text-zinc-900 sm:px-12 dark:text-zinc-100 lg:border-l lg:border-zinc-900/10 dark:lg:border-zinc-200/10">
+        <div className="flex flex-col gap-6 bg-background px-5 py-10 sm:px-12 sm:py-14 text-zinc-900 dark:text-zinc-100 lg:border-l lg:border-zinc-900/10 dark:lg:border-zinc-200/10">
           <div className="flex items-center gap-4 text-xs font-semibold uppercase tracking-[0.3em] text-zinc-500 dark:text-zinc-400">
             <span className="h-px w-12 bg-zinc-300 dark:bg-zinc-600" />
             The culture
           </div>
-          <h3 className="font-serif text-4xl leading-tight sm:text-5xl">
+          <h3 className="font-serif text-3xl leading-tight sm:text-4xl lg:text-5xl">
             This is what{" "}
             <span className="text-emerald-700 dark:text-emerald-300">
               2 AM
