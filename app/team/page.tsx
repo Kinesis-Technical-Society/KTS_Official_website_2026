@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import ThemeToggle from "../components/ThemeToggle";
+import Navbar from "../components/Navbar";
 import CoreTeamSection from "./components/CoreTeamSection";
 import FounderSection from "./components/FounderSection";
 import MentorSection from "./components/MentorSection";
@@ -32,29 +32,7 @@ export default function TeamPage() {
     <main className="hero-grid flex-1">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-0 px-4 pb-0 pt-6 sm:px-6">
 
-      
-        <header className="hero-rise sticky top-4 z-40 flex flex-wrap items-center justify-between gap-4 rounded-2xl border-2 border-zinc-900 bg-white/90 px-5 py-3 shadow-[0_4px_0_#111] backdrop-blur dark:border-zinc-200/30 dark:bg-[#151515]/90">
-          <div className="flex items-center gap-3">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
-              <Image src="/kts-logo.webp" alt="KTS" width={40} height={40} priority />
-            </div>
-            <span className="text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg dark:text-zinc-100">
-              Kinesis Technical Society
-            </span>
-          </div>
-          <nav className="hidden items-center gap-8 text-xs font-semibold uppercase tracking-[0.22em] text-zinc-700 md:flex dark:text-zinc-300">
-            <a className="nav-link nav-underline-lime transition hover:text-zinc-900 dark:hover:text-white" href="/">About</a>
-            <a className="nav-link nav-underline-sky transition hover:text-zinc-900 dark:hover:text-white" href="/team">Team</a>
-            <a className="nav-link nav-underline-lavender transition hover:text-zinc-900 dark:hover:text-white" href="/projects">Projects</a>
-            <a className="nav-link nav-underline-amber transition hover:text-zinc-900 dark:hover:text-white" href="/event">Events</a>
-          </nav>
-          <div className="flex items-center gap-3">
-            <ThemeToggle />
-            <button className="rounded-xl border-2 border-zinc-900 bg-(--accent-lime) px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/40" type="button">
-              Contact
-            </button>
-          </div>
-        </header>
+        <Navbar />
 
     
         <section className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
@@ -200,7 +178,7 @@ export default function TeamPage() {
               <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
                 <div className="flex items-center justify-center gap-3 lg:justify-start">
                   <div className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
-                    <Image src="/kts-logo.webp" alt="KTS" width={28} height={28} />
+                    <Image src="/kts-logo.webp" alt="KTS" width={28} height={28} style={{ width: "auto", height: "auto" }} />
                   </div>
                   <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Kinesis Technical Society</span>
                 </div>

@@ -2,9 +2,9 @@
 
 import eventsData from "../data/events.json" with { type: "json" };
 
+import Navbar from "../components/Navbar";
 import { CultureCallout } from "./components/CultureCallout";
 import { EventFormatsMarquee } from "./components/EventFormatsMarquee";
-import { EventsHeader } from "./components/EventsHeader";
 import { EventsHero } from "./components/EventsHero";
 import { eventPageStyles } from "./components/EventPageStyles";
 import { JoinFooterSection } from "./components/JoinFooterSection";
@@ -20,7 +20,7 @@ export default function EventsPage() {
       <style>{eventPageStyles}</style>
 
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-0 px-4 pb-0 pt-6 sm:px-6">
-        <EventsHeader />
+        <Navbar />
         <EventsHero />
         <EventFormatsMarquee />
         <MysterySection />
@@ -31,3 +31,4 @@ export default function EventsPage() {
     </main>
   );
 }
+

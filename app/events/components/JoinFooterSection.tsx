@@ -33,7 +33,7 @@ export function JoinFooterSection() {
           <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
             <div className="flex items-center justify-center gap-3 lg:justify-start">
               <div className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
-                <Image src="/kts-logo.webp" alt="KTS" width={28} height={28} />
+                <Image src="/kts-logo.webp" alt="KTS" width={28} height={28} style={{ width: "auto", height: "auto" }} />
               </div>
               <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Kinesis Technical Society</span>
             </div>
