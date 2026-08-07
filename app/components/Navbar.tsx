@@ -36,9 +36,9 @@ export default function Navbar() {
               style={{ width: "auto", height: "auto" }}
             />
           </div>
-          <span className="text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg dark:text-zinc-100">
+          {/* <span className="text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg dark:text-zinc-100">
             Kinesis Technical Society
-          </span>
+          </span> */}
         </Link>
 
         {/* Desktop Navigation */}
@@ -62,8 +62,8 @@ export default function Navbar() {
         <div className="flex items-center gap-3">
           <ThemeToggle />
           <a
-            href="mailto:hello@kts.edu"
-            className="hidden rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 sm:block dark:border-zinc-200/40"
+            href="mailto:kts@kiet.edu"
+            className="hidden rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] px-4 py-2 text-xs font-bold uppercase tracking-widest text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 md:block dark:border-zinc-200/40"
           >
             Contact
           </a>
