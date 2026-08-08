@@ -8,7 +8,7 @@ export function EventsHeader() {
     <header className="hero-rise sticky top-4 z-40 flex flex-wrap items-center justify-between gap-4 rounded-2xl border-2 border-zinc-900 bg-white/90 px-5 py-3 shadow-[0_4px_0_#111] backdrop-blur dark:border-zinc-200/30 dark:bg-[#151515]/90">
       <div className="flex items-center gap-3">
         <div className="flex h-14 w-14 items-center justify-center rounded-2xl border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
-          <Image src="/kts-logo.webp" alt="KTS" width={40} height={40} priority style={{ width: "auto", height: "auto" }} />
+          <Image src="/kts-logo.webp" alt="KTS" width={40} height={40} priority className="h-10 w-10 object-contain" />
         </div>
         <span className="text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg dark:text-zinc-100">
           Kinesis Technical Society

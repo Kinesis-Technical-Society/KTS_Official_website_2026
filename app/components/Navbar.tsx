@@ -33,7 +33,7 @@ export default function Navbar() {
               width={36}
               height={36}
               priority
-              style={{ width: "auto", height: "auto" }}
+              className="h-9 w-9 object-contain"
             />
           </div>
           {/* <span className="text-base font-semibold leading-tight tracking-tight text-zinc-900 sm:text-lg dark:text-zinc-100">

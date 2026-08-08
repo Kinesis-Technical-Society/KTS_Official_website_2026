@@ -44,7 +44,7 @@ export default function FooterSection() {
                   alt="Kinesis Technical Society logo"
                   width={34}
                   height={34}
-                  style={{ width: "auto", height: "auto" }}
+                  className="h-8 w-8 object-contain"
                 />
               </div>
               <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
