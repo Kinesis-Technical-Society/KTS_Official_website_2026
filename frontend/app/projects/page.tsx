@@ -19,6 +19,7 @@ interface RawProject {
   liveUrl?: string;
   liveLink?: string;
   featured?: boolean;
+  linkedinUrl?: string;
 }
 
 export default function ProjectsPage() {
@@ -33,6 +34,7 @@ export default function ProjectsPage() {
     githubUrl: p.githubLink || p.githubUrl,
     liveUrl: p.liveLink || p.liveUrl,
     featured: p.featured,
+    linkedinUrl: p.linkedinUrl,
   }));
 
   const categories = [
@@ -78,8 +80,8 @@ export default function ProjectsPage() {
               type="button"
               onClick={() => setActiveCategory(category)}
               className={`rounded-xl border-2 border-zinc-900 px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0_#111] transition-all hover:-translate-y-0.5 dark:border-zinc-200/40 ${activeCategory === category
-                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                  : "bg-white text-zinc-900 hover:bg-zinc-100 dark:bg-[#151515] dark:text-zinc-200 dark:hover:bg-zinc-800"
+                ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+                : "bg-white text-zinc-900 hover:bg-zinc-100 dark:bg-[#151515] dark:text-zinc-200 dark:hover:bg-zinc-800"
                 }`}
             >
               {category}
@@ -123,6 +125,16 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="mt-6 flex items-center gap-3 border-t border-zinc-900/10 pt-4 dark:border-zinc-200/10">
+                  {project.linkedinUrl && (
+                    <a
+                      href={project.linkedinUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-zinc-900 bg-[#0a66c2] py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-[#084e96] dark:border-zinc-200/40 dark:shadow-[2px_2px_0_#000]"
+                    > 
+                      <span>Owner</span>
+                    </a>
+                  )}
                   {project.githubUrl && (
                     <a
                       href={project.githubUrl}
