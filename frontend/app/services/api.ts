@@ -1,4 +1,13 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000/api";
+export function getApiBaseUrl(): string {
+  if (process.env.NEXT_PUBLIC_API_URL) {
+    return process.env.NEXT_PUBLIC_API_URL;
+  }
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    return `http://${hostname}:5000/api`;
+  }
+  return "http://localhost:5000/api";
+}
 
 export interface EventItem {
   _id?: string;
@@ -22,7 +31,7 @@ export interface EventItem {
 }
 
 export async function loginAdmin(email: string, password: string) {
-  const res = await fetch(`${API_BASE_URL}/admin/login`, {
+  const res = await fetch(`${getApiBaseUrl()}/admin/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
@@ -36,9 +45,10 @@ export async function loginAdmin(email: string, password: string) {
 
 export async function fetchEvents(status?: string): Promise<EventItem[]> {
   try {
+    const baseUrl = getApiBaseUrl();
     const url = status
-      ? `${API_BASE_URL}/events?status=${encodeURIComponent(status)}`
-      : `${API_BASE_URL}/events`;
+      ? `${baseUrl}/events?status=${encodeURIComponent(status)}`
+      : `${baseUrl}/events`;
 
     const res = await fetch(url, { cache: "no-store" });
     if (!res.ok) {
@@ -53,7 +63,7 @@ export async function fetchEvents(status?: string): Promise<EventItem[]> {
 }
 
 export async function createEvent(eventData: Partial<EventItem>, token: string) {
-  const res = await fetch(`${API_BASE_URL}/events`, {
+  const res = await fetch(`${getApiBaseUrl()}/events`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +79,7 @@ export async function createEvent(eventData: Partial<EventItem>, token: string) 
 }
 
 export async function bulkCreateEvents(events: Partial<EventItem>[], token: string) {
-  const res = await fetch(`${API_BASE_URL}/events/bulk`, {
+  const res = await fetch(`${getApiBaseUrl()}/events/bulk`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -85,7 +95,7 @@ export async function bulkCreateEvents(events: Partial<EventItem>[], token: stri
 }
 
 export async function updateEvent(id: string, eventData: Partial<EventItem>, token: string) {
-  const res = await fetch(`${API_BASE_URL}/events/${id}`, {
+  const res = await fetch(`${getApiBaseUrl()}/events/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -101,7 +111,7 @@ export async function updateEvent(id: string, eventData: Partial<EventItem>, tok
 }
 
 export async function deleteEvent(id: string, token: string) {
-  const res = await fetch(`${API_BASE_URL}/events/${id}`, {
+  const res = await fetch(`${getApiBaseUrl()}/events/${id}`, {
     method: "DELETE",
     headers: {
       Authorization: `Bearer ${token}`,

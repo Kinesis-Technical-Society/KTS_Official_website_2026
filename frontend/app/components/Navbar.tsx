@@ -24,7 +24,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="hero-rise sticky top-4 z-50 flex flex-col gap-3 rounded-2xl border-2 border-zinc-900 bg-white/90 p-3 shadow-[0_4px_0_#111] backdrop-blur dark:border-zinc-200/30 dark:bg-[#151515]/90">
+    <header className="hero-rise sticky top-4 z-[100] flex flex-col gap-3 rounded-2xl border-2 border-zinc-900 bg-white/90 p-3 shadow-[0_4px_0_#111] backdrop-blur dark:border-zinc-200/30 dark:bg-[#151515]/90">
       <div className="flex items-center justify-between gap-4 px-1">
         <Link href="/" className="flex items-center gap-3 group">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] transition group-hover:-translate-y-0.5 dark:border-zinc-200/40 dark:bg-[#151515]">
@@ -60,7 +60,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 relative z-20">
           <ThemeToggle />
           <a
             href="mailto:kts@kiet.edu"
@@ -72,16 +72,16 @@ export default function Navbar() {
           {/* Mobile Hamburger Button */}
           <button
             type="button"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white p-2 shadow-[0_3px_0_#111] transition active:translate-y-0.5 md:hidden dark:border-zinc-200/40 dark:bg-[#151515] dark:text-white"
+            onClick={() => setIsMobileMenuOpen((prev) => !prev)}
+            className="relative z-20 flex h-10 w-10 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white p-2 shadow-[0_3px_0_#111] transition active:translate-y-0.5 md:hidden dark:border-zinc-200/40 dark:bg-[#151515] dark:text-white cursor-pointer pointer-events-auto touch-manipulation select-none"
             aria-label="Toggle navigation menu"
           >
             {isMobileMenuOpen ? (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             ) : (
-              <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 pointer-events-none" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             )}

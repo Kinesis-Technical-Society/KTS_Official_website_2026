@@ -13,18 +13,20 @@ const applyTheme = (theme: Theme) => {
 };
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>("light");
+  const [theme, setTheme] = useState<Theme>("dark");
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
     const initial: Theme =
-      stored === "dark" || stored === "light"
-        ? stored
-        : prefersDark
-          ? "dark"
-          : "light";
+      stored === "light"
+        ? "light"
+        : stored === "dark"
+        ? "dark"
+        : prefersLight
+        ? "light"
+        : "dark";
 
     applyTheme(initial);
     setTheme(initial);
@@ -39,7 +41,24 @@ export default function ThemeToggle() {
   };
 
   if (!mounted) {
-    return <div aria-hidden className="h-10 w-10" />;
+    return (
+      <button
+        type="button"
+        aria-label="Toggle theme"
+        className="relative z-20 inline-flex h-10 w-10 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white text-zinc-900 shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100 cursor-pointer pointer-events-auto touch-manipulation select-none"
+      >
+        <svg
+          aria-hidden="true"
+          className="h-5 w-5 opacity-0 pointer-events-none"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          viewBox="0 0 24 24"
+        >
+          <circle cx="12" cy="12" r="4" />
+        </svg>
+      </button>
+    );
   }
 
   return (
@@ -48,12 +67,12 @@ export default function ThemeToggle() {
       aria-pressed={theme === "dark"}
       aria-label={theme === "dark" ? "Switch to light theme" : "Switch to dark theme"}
       onClick={toggleTheme}
-      className="inline-flex h-10 w-10 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100"
+      className="relative z-20 inline-flex h-10 w-10 items-center justify-center rounded-xl border-2 border-zinc-900 bg-white text-zinc-900 shadow-[0_3px_0_#111] transition hover:-translate-y-0.5 active:translate-y-0 dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100 cursor-pointer pointer-events-auto touch-manipulation select-none"
     >
       {theme === "dark" ? (
         <svg
           aria-hidden="true"
-          className="h-5 w-5"
+          className="h-5 w-5 pointer-events-none"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
@@ -72,7 +91,7 @@ export default function ThemeToggle() {
       ) : (
         <svg
           aria-hidden="true"
-          className="h-5 w-5"
+          className="h-5 w-5 pointer-events-none"
           fill="none"
           stroke="currentColor"
           strokeWidth="2"

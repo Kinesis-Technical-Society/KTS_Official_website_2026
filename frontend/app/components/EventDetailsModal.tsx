@@ -52,7 +52,7 @@ export default function EventDetailsModal({ event, onClose }: EventDetailsModalP
       className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-black/80 backdrop-blur-md transition-all duration-300 animate-in fade-in"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-zinc-800 bg-zinc-950 text-white shadow-2xl scrollbar-hide">
+      <div className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-3xl border border-zinc-200 bg-white text-zinc-900 dark:border-zinc-800 dark:bg-zinc-950 dark:text-white shadow-2xl scrollbar-hide transition-colors duration-200">
         {/* Glowing Top Accent Bar */}
         <div
           className="h-1.5 w-full sticky top-0 z-20"
@@ -72,8 +72,8 @@ export default function EventDetailsModal({ event, onClose }: EventDetailsModalP
           </svg>
         </button>
 
-        {/* Cover Image Banner (if available and not errored) */}
-        {event.image && !imgError ? (
+        {/* Cover Image Banner (only rendered if image exists and is valid) */}
+        {event.image && !imgError && (
           <div
             onClick={() => setActivePhoto(event.image || null)}
             className="group relative w-full h-52 sm:h-72 overflow-hidden bg-zinc-900 cursor-pointer"
@@ -85,16 +85,11 @@ export default function EventDetailsModal({ event, onClose }: EventDetailsModalP
               onError={() => setImgError(true)}
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 via-transparent to-transparent" />
             <div className="absolute bottom-3 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 border border-zinc-700 text-[11px] font-mono font-semibold text-white">
               <span>🔍 Click to expand</span>
             </div>
           </div>
-        ) : (
-          <div
-            className="w-full h-28 sm:h-36 opacity-30"
-            style={{ background: event.gradient || "linear-gradient(135deg, #0a1a02 0%, #0e0e0e 100%)" }}
-          />
         )}
 
         <div className="p-6 sm:p-8 space-y-6">

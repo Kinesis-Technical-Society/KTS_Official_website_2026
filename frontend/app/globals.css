@@ -254,7 +254,7 @@ body {
 }
 
 .strip-track {
-  animation: strip-scroll 22s linear infinite;
+  animation: strip-scroll 12s linear infinite;
 }
 
 .full-bleed {
