@@ -11,14 +11,14 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "About", href: "/about", colorClass: "nav-underline-lime" },
+    { name: "Home", href: "/", colorClass: "nav-underline-lime" },
     { name: "Team", href: "/team", colorClass: "nav-underline-sky" },
     { name: "Projects", href: "/projects", colorClass: "nav-underline-lavender" },
     { name: "Events", href: "/events", colorClass: "nav-underline-amber" },
   ];
 
   const isLinkActive = (href: string) => {
-    if (href === "/about" && (pathname === "/about" || pathname === "/")) return true;
+    if (href === "/" && pathname === "/") return true;
     return pathname === href;
   };
 

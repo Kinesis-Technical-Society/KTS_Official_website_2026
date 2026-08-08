@@ -39,9 +39,9 @@ export default function HeroSection() {
         <div className="flex flex-col justify-center gap-4 sm:flex-row lg:justify-start">
           <Link
             className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-6 py-3.5 text-base font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 sm:px-8 sm:py-4 sm:text-lg dark:bg-[#f3f2eb] dark:text-[#121212]"
-            href="/about"
+            href="/events"
           >
-            <span>Explore KTS</span>
+            <span>Explore KTS Events</span>
             <svg
               aria-hidden="true"
               className="h-4 w-4"

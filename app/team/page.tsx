@@ -31,17 +31,14 @@ export default function TeamPage() {
   return (
     <main className="hero-grid flex-1">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-0 px-4 pb-0 pt-6 sm:px-6">
-
-        <Navbar />
-
-    
+        <Navbar /> 
         <section className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="hero-rise hero-rise-delay-1 flex flex-col gap-8">
             <div className="inline-flex items-center gap-2 self-start rounded-lg border-2 border-[#121212] bg-white px-3 py-1 text-xs font-bold shadow-[2px_2px_0px_0px_#121212] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100">
               <span className="h-2 w-2 animate-pulse rounded-full bg-[#bcf954]" />
               MEET THE TEAM
             </div>
-            <h1 className="font-display text-5xl font-bold uppercase leading-[0.9] text-[#121212] md:text-7xl lg:text-8xl dark:text-[#f3f2eb]">
+            <h1 className="font-display text-5xl font-bold uppercase leading-[0.9] text-[#121212] md:text-6xl lg:text-7xl dark:text-[#f3f2eb]">
               PEOPLE WHO
               <br />
               <span className="bg-[#bcf954] px-2">SHIP RAW.</span>
@@ -51,8 +48,8 @@ export default function TeamPage() {
               and founders who started it all with nothing but a wild idea.
             </p>
             <div className="flex flex-col gap-4 sm:flex-row">
-              <a href="#mentors" className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 dark:bg-[#f3f2eb] dark:text-[#121212]">
-                <span>Meet the Team</span>
+              <a href="/events" className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 dark:bg-[#f3f2eb] dark:text-[#121212]">
+                <span>Explore KTS Events</span>
                 <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M5 12h12" /><path d="M13 6l6 6-6 6" />
                 </svg>
@@ -90,7 +87,7 @@ export default function TeamPage() {
         </section>
 
     
-        <div className="full-bleed mt-10 border-y border-zinc-900/30 bg-white/80 dark:border-zinc-200/20 dark:bg-[#151515]/80">
+        <div className="full-bleed mt-25 border-y border-zinc-900/30 bg-white/80 dark:border-zinc-200/20 dark:bg-[#151515]/80">
           <div className="flex items-center gap-4 px-2 py-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-zinc-500 sm:px-4 sm:text-xs dark:text-zinc-400">
             <span className="shrink-0 text-zinc-900 dark:text-zinc-100">The Crew</span>
             <span aria-hidden className="h-4 w-px bg-zinc-900/30 dark:bg-zinc-200/20" />

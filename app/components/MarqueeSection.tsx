@@ -15,7 +15,7 @@ export default function MarqueeSection() {
   ];
 
   return (
-    <div className="full-bleed mt-10 border-y border-zinc-900/30 bg-white/80 dark:border-zinc-200/20 dark:bg-[#151515]/80">
+    <div className="full-bleed mt-0 border-y border-zinc-900/30 bg-white/80 dark:border-zinc-200/20 dark:bg-[#151515]/80">
       <div className="flex items-center gap-4 px-2 py-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-zinc-500 sm:px-4 sm:text-xs dark:text-zinc-400">
         <span className="shrink-0 text-zinc-900 dark:text-zinc-100">
           What we do
