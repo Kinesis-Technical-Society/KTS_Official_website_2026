@@ -38,9 +38,32 @@ export default function AdminPage() {
     prize: "",
     tags: "",
     highlights: "",
+    image: "",
     accent: "#bcf954",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Helper for reading image files as Base64 Data URLs
+  const handleImageFileRead = (file: File, callback: (base64Url: string) => void) => {
+    if (!file.type.startsWith("image/")) {
+      showNotify("error", "Please select a valid image file (PNG, JPG, WEBP, GIF, SVG).");
+      return;
+    }
+    if (file.size > 6 * 1024 * 1024) {
+      showNotify("error", "Image size is too large (max 6MB). Please pick a smaller image.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      if (typeof reader.result === "string") {
+        callback(reader.result);
+      }
+    };
+    reader.onerror = () => {
+      showNotify("error", "Failed to read image file.");
+    };
+    reader.readAsDataURL(file);
+  };
 
   // Bulk input state
   const [bulkJson, setBulkJson] = useState(`[
@@ -155,6 +178,7 @@ export default function AdminPage() {
         prize: "",
         tags: "",
         highlights: "",
+        image: "",
         accent: "#bcf954",
       });
       setActiveTab("list");
@@ -437,38 +461,49 @@ export default function AdminPage() {
                     key={event._id || event.id}
                     className="bg-zinc-900/80 border border-zinc-800 p-5 rounded-2xl hover:border-zinc-700 transition-all flex flex-col md:flex-row justify-between gap-4"
                   >
-                    <div className="space-y-2 flex-1">
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span
-                          className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${
-                            event.status === "brewing"
-                              ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
-                              : event.status === "upcoming"
-                              ? "bg-[#bcf954]/20 text-[#bcf954] border border-[#bcf954]/40"
-                              : "bg-zinc-800 text-zinc-400"
-                          }`}
-                        >
-                          {event.status}
-                        </span>
-                        <span className="font-mono text-xs text-zinc-400">{event.date}</span>
-                      </div>
-
-                      <h3 className="text-lg font-bold text-white">{event.title}</h3>
-                      <p className="text-xs text-zinc-400 line-clamp-2">{event.description}</p>
-
-                      {event.moreInfoUrl && (
-                        <p className="text-xs font-mono text-[#bcf954]">
-                          🔗 More Info Link:{" "}
-                          <a
-                            href={event.moreInfoUrl}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="underline hover:text-white"
-                          >
-                            {event.moreInfoUrl}
-                          </a>
-                        </p>
+                    <div className="space-y-2 flex-1 flex flex-col sm:flex-row gap-4 items-start">
+                      {event.image && (
+                        <div className="relative w-24 h-20 rounded-xl overflow-hidden bg-zinc-950 border border-zinc-800 shrink-0">
+                          <img
+                            src={event.image}
+                            alt={event.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
                       )}
+                      <div className="space-y-2 flex-1">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span
+                            className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold uppercase ${
+                              event.status === "brewing"
+                                ? "bg-emerald-500/20 text-emerald-400 border border-emerald-500/40"
+                                : event.status === "upcoming"
+                                ? "bg-[#bcf954]/20 text-[#bcf954] border border-[#bcf954]/40"
+                                : "bg-zinc-800 text-zinc-400"
+                            }`}
+                          >
+                            {event.status}
+                          </span>
+                          <span className="font-mono text-xs text-zinc-400">{event.date}</span>
+                        </div>
+
+                        <h3 className="text-lg font-bold text-white">{event.title}</h3>
+                        <p className="text-xs text-zinc-400 line-clamp-2">{event.description}</p>
+
+                        {event.moreInfoUrl && (
+                          <p className="text-xs font-mono text-[#bcf954]">
+                            🔗 More Info Link:{" "}
+                            <a
+                              href={event.moreInfoUrl}
+                              target="_blank"
+                              rel="noreferrer"
+                              className="underline hover:text-white"
+                            >
+                              {event.moreInfoUrl}
+                            </a>
+                          </p>
+                        )}
+                      </div>
                     </div>
 
                     <div className="flex md:flex-col items-center justify-end gap-2 shrink-0 border-t md:border-t-0 md:border-l border-zinc-800 pt-3 md:pt-0 md:pl-4">
@@ -599,6 +634,74 @@ export default function AdminPage() {
                     className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-[#bcf954]"
                   />
                 </div>
+              </div>
+
+              {/* Event Cover Image Upload / URL Input */}
+              <div className="space-y-3 p-4 rounded-2xl bg-zinc-950/60 border border-zinc-800">
+                <label className="block text-zinc-300 font-bold uppercase tracking-wider text-xs">
+                  🖼️ Event Cover Image (Upload File or Enter URL)
+                </label>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
+                  <div>
+                    <span className="block text-[11px] text-zinc-400 mb-1">Option A: Upload Image File</span>
+                    <label className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 border border-dashed border-zinc-700 hover:border-[#bcf954] text-zinc-300 hover:text-white cursor-pointer transition-all">
+                      <svg className="w-4 h-4 text-[#bcf954]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      </svg>
+                      <span className="text-xs font-semibold">Choose Image File...</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleImageFileRead(file, (base64) => setFormData((prev) => ({ ...prev, image: base64 })));
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+
+                  <div>
+                    <span className="block text-[11px] text-zinc-400 mb-1">Option B: Or Paste Image URL</span>
+                    <input
+                      type="text"
+                      placeholder="https://images.unsplash.com/..."
+                      value={formData.image}
+                      onChange={(e) => setFormData({ ...formData, image: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white focus:outline-none focus:border-[#bcf954]"
+                    />
+                  </div>
+                </div>
+
+                {formData.image ? (
+                  <div className="mt-3 flex items-center justify-between gap-4 p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={formData.image}
+                        alt="Cover Preview"
+                        className="w-16 h-12 rounded-lg object-cover border border-zinc-700 shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold text-emerald-400">✓ Image Ready</p>
+                        <p className="text-[10px] text-zinc-400 truncate max-w-xs">
+                          {formData.image.startsWith("data:") ? "Uploaded Base64 File" : formData.image}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setFormData({ ...formData, image: "" })}
+                      className="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white text-xs transition-all shrink-0 cursor-pointer"
+                    >
+                      🗑️ Remove Image
+                    </button>
+                  </div>
+                ) : (
+                  <p className="text-[11px] text-zinc-500 italic">No cover image selected. (Optional - Default gradient banner will be used if omitted)</p>
+                )}
               </div>
 
               <button
@@ -743,6 +846,74 @@ export default function AdminPage() {
                     className="w-full px-4 py-2.5 rounded-xl bg-zinc-950 border border-zinc-800 text-white focus:outline-none focus:border-[#bcf954]"
                   />
                 </div>
+              </div>
+
+              {/* Edit Cover Image Upload / URL Input */}
+              <div className="space-y-3 p-4 rounded-2xl bg-zinc-950/60 border border-zinc-800">
+                <label className="block text-zinc-300 font-bold uppercase tracking-wider text-xs">
+                  🖼️ Event Cover Image (Upload File or Enter URL)
+                </label>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 items-start">
+                  <div>
+                    <span className="block text-[11px] text-zinc-400 mb-1">Option A: Upload Image File</span>
+                    <label className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 border border-dashed border-zinc-700 hover:border-[#bcf954] text-zinc-300 hover:text-white cursor-pointer transition-all">
+                      <svg className="w-4 h-4 text-[#bcf954]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                      </svg>
+                      <span className="text-xs font-semibold">Choose Image File...</span>
+                      <input
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            handleImageFileRead(file, (base64) => setEditingEvent((prev) => prev ? { ...prev, image: base64 } : null));
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
+
+                  <div>
+                    <span className="block text-[11px] text-zinc-400 mb-1">Option B: Or Paste Image URL</span>
+                    <input
+                      type="text"
+                      placeholder="https://images.unsplash.com/..."
+                      value={editingEvent.image || ""}
+                      onChange={(e) => setEditingEvent({ ...editingEvent, image: e.target.value })}
+                      className="w-full px-4 py-2.5 rounded-xl bg-zinc-900 border border-zinc-800 text-white focus:outline-none focus:border-[#bcf954]"
+                    />
+                  </div>
+                </div>
+
+                {editingEvent.image ? (
+                  <div className="mt-3 flex items-center justify-between gap-4 p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <img
+                        src={editingEvent.image}
+                        alt="Cover Preview"
+                        className="w-16 h-12 rounded-lg object-cover border border-zinc-700 shrink-0"
+                      />
+                      <div className="min-w-0">
+                        <p className="text-xs font-bold text-emerald-400">✓ Image Loaded</p>
+                        <p className="text-[10px] text-zinc-400 truncate max-w-xs">
+                          {editingEvent.image.startsWith("data:") ? "Uploaded Base64 File" : editingEvent.image}
+                        </p>
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setEditingEvent({ ...editingEvent, image: "" })}
+                      className="px-3 py-1.5 rounded-lg bg-red-500/20 text-red-400 hover:bg-red-500 hover:text-white text-xs transition-all shrink-0 cursor-pointer"
+                    >
+                      🗑️ Remove Image
+                    </button>
+                  </div>
+                ) : (
+                  <p className="text-[11px] text-zinc-500 italic">No image selected.</p>
+                )}
               </div>
 
               <div className="flex items-center justify-end gap-3 pt-4 border-t border-zinc-800">

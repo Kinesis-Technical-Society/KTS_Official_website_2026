@@ -36,6 +36,13 @@ export default function EventDetailsModal({ event, onClose }: EventDetailsModalP
     };
   }, [event]);
 
+  const [imgError, setImgError] = useState(false);
+
+  // Reset imgError if event changes
+  useEffect(() => {
+    setImgError(false);
+  }, [event]);
+
   if (!event) return null;
 
   const accentColor = event.accent || "#bcf954";
@@ -65,15 +72,23 @@ export default function EventDetailsModal({ event, onClose }: EventDetailsModalP
           </svg>
         </button>
 
-        {/* Cover Image Banner (if available) */}
-        {event.image ? (
-          <div className="relative w-full h-48 sm:h-64 overflow-hidden bg-zinc-900">
+        {/* Cover Image Banner (if available and not errored) */}
+        {event.image && !imgError ? (
+          <div
+            onClick={() => setActivePhoto(event.image || null)}
+            className="group relative w-full h-52 sm:h-72 overflow-hidden bg-zinc-900 cursor-pointer"
+            title="Click to expand image"
+          >
             <img
               src={event.image}
               alt={event.title}
-              className="w-full h-full object-cover"
+              onError={() => setImgError(true)}
+              className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
+            <div className="absolute bottom-3 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/70 border border-zinc-700 text-[11px] font-mono font-semibold text-white">
+              <span>🔍 Click to expand</span>
+            </div>
           </div>
         ) : (
           <div
