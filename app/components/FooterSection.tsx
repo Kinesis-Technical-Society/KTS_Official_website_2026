@@ -42,8 +42,8 @@ export default function FooterSection() {
                 <Image
                   src="/kts-logo.webp"
                   alt="Kinesis Technical Society logo"
-                  width={28}
-                  height={28}
+                  width={34}
+                  height={34}
                   style={{ width: "auto", height: "auto" }}
                 />
               </div>

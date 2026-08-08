@@ -21,10 +21,10 @@ export function EventsHero() {
 
         <div className="flex flex-col gap-4 sm:flex-row">
           <a
-            href="#past"
+            href="/team"
             className="flex items-center justify-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 dark:bg-[#f3f2eb] dark:text-[#121212]"
           >
-            <span>Explore</span>
+            <span>Explore KTS Team</span>
             <svg className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24" aria-hidden="true">
               <path d="M5 12h12" />
               <path d="M13 6l6 6-6 6" />
