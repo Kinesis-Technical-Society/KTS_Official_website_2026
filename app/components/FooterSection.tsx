@@ -80,6 +80,7 @@ export default function FooterSection() {
                 </a>
               ))}
             </div>
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">Built with ❤️ by KTS</p>
           </div>
           <div className="flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-300 lg:justify-end">
             <a

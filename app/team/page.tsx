@@ -6,6 +6,7 @@ import Navbar from "../components/Navbar";
 import CoreTeamSection from "./components/CoreTeamSection";
 import FounderSection from "./components/FounderSection";
 import MentorSection from "./components/MentorSection";
+import FooterSection from "../components/FooterSection";
 
 function LinkedInIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -31,7 +32,7 @@ export default function TeamPage() {
   return (
     <main className="hero-grid flex-1">
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-0 px-4 pb-0 pt-6 sm:px-6">
-        <Navbar /> 
+        <Navbar />
         <section className="mt-10 grid gap-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
           <div className="hero-rise hero-rise-delay-1 flex flex-col gap-8">
             <div className="inline-flex items-center gap-2 self-start rounded-lg border-2 border-[#121212] bg-white px-3 py-1 text-xs font-bold shadow-[2px_2px_0px_0px_#121212] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100">
@@ -60,7 +61,7 @@ export default function TeamPage() {
             </div>
           </div>
 
-       
+
           <div className="hero-rise hero-rise-delay-2 relative hidden lg:block">
             <div className="hero-float-slow relative rounded-3xl border-2 border-zinc-900 bg-white shadow-[0_10px_0_#111] dark:border-zinc-200/30 dark:bg-[#151515]">
               <div className="flex items-center justify-between rounded-t-3xl border-b-2 border-zinc-900 bg-zinc-900 px-4 py-3 dark:border-zinc-200/20 dark:bg-[#0b0b0b]">
@@ -86,7 +87,7 @@ export default function TeamPage() {
           </div>
         </section>
 
-    
+
         <div className="full-bleed mt-25 border-y border-zinc-900/30 bg-white/80 dark:border-zinc-200/20 dark:bg-[#151515]/80">
           <div className="flex items-center gap-4 px-2 py-3 text-[10px] font-semibold uppercase tracking-[0.32em] text-zinc-500 sm:px-4 sm:text-xs dark:text-zinc-400">
             <span className="shrink-0 text-zinc-900 dark:text-zinc-100">The Crew</span>
@@ -125,7 +126,7 @@ export default function TeamPage() {
           </div>
         </section>
 
-    
+
         <section className="full-bleed border-b border-zinc-900/20 bg-background dark:border-zinc-200/15">
           <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
             <div className="mb-10 flex flex-col gap-4">
@@ -134,14 +135,14 @@ export default function TeamPage() {
                 Where it all <span className="italic">started.</span>
               </h2>
               <p className="max-w-md text-sm leading-7 text-zinc-600 dark:text-zinc-300">
-                The founders who turned an idea into a movement — everything that followed exists because they chose to start.
+                The founders who turned an idea into a movement — everything that followed exists because they choose to start.
               </p>
             </div>
-            <FounderSection />  
+            <FounderSection />
           </div>
         </section>
 
-       
+
         <section
           className="full-bleed border-y-2 border-(--section-border) bg-background"
           style={{
@@ -151,14 +152,14 @@ export default function TeamPage() {
         >
           <div className="mx-auto w-full max-w-7xl px-6 pb-12 pt-10 text-center">
             <h2 className="mb-4 font-display text-[36px] font-bold text-[#121212] md:text-[60px] dark:text-[#f3f2eb]">
-              Your name belongs<br className="hidden sm:block" /> on this page.
+              Your name belongs on this page.
             </h2>
             <p className="mb-8 text-[18px] font-medium text-[#4b5563] dark:text-zinc-300">
-             We’re always looking for builders — if you build, we want you.
+              We’re always looking for builders — if you build, we want you.
             </p>
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <a
-                href="#join"
+                href="mailto:kts@kiet.edu"
                 className="flex items-center gap-2 rounded-xl bg-[#121212] px-8 py-4 text-lg font-bold text-white shadow-[4px_4px_0px_0px_#bcf954] transition-transform hover:-translate-y-0.5 dark:bg-[#f3f2eb] dark:text-[#121212]"
               >
                 <span>Join KTS</span>
@@ -166,40 +167,12 @@ export default function TeamPage() {
                   <path d="M5 12h12" /><path d="M13 6l6 6-6 6" />
                 </svg>
               </a>
-             
+
             </div>
           </div>
 
-          <footer className="border-t-2 border-(--section-border) bg-background">
-            <div className="mx-auto w-full max-w-7xl px-4 py-6 text-sm text-zinc-600 sm:px-6 dark:text-zinc-400">
-              <div className="grid w-full gap-6 text-center lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:text-left">
-                <div className="flex items-center justify-center gap-3 lg:justify-start">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-zinc-900 bg-white shadow-[0_3px_0_#111] dark:border-zinc-200/40 dark:bg-[#151515]">
-                    <Image src="/kts-logo.webp" alt="KTS" width={28} height={28} style={{ width: "auto", height: "auto" }} />
-                  </div>
-                  <span className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">Kinesis Technical Society</span>
-                </div>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">Built with ❤️ by KTS</p>
-                <div className="flex items-center justify-center gap-4 text-zinc-700 dark:text-zinc-300 lg:justify-end">
-                  <a href="#" aria-label="Instagram" className="icon-link icon-instagram">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <rect x="4" y="4" width="16" height="16" rx="4" /><circle cx="12" cy="12" r="3" /><circle cx="17" cy="7" r="1" />
-                    </svg>
-                  </a>
-                  <a href="#" aria-label="LinkedIn" className="icon-link icon-linkedin">
-                    <LinkedInIcon className="h-5 w-5" />
-                  </a>
-                  <a href="mailto:hello@kts.edu" aria-label="Email" className="icon-link icon-email">
-                    <svg className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                      <path d="M4 6h16v12H4z" /><path d="M4 6l8 6 8-6" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </footer>
         </section>
-
+        <FooterSection />
       </div>
     </main>
   );

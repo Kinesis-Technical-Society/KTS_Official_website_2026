@@ -95,8 +95,16 @@ function MentorCard({ person, index }: { person: Person; index: number }) {
             {person.role && (() => {
               const cleanRole = person.role.replace(/<[^>]*>/g, " ").replace(/\s+/g, " ").trim();
               return (
-                <span className={`w-fit shrink-0 rounded-lg border-2 border-zinc-900 px-2.5 py-0.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-[1px_1px_0_#111] transition-transform hover:-translate-y-0.5 dark:border-zinc-200/30 ${domainColors[cleanRole] ?? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"}`}>
-                  {cleanRole}
+                <span className={`w-fit shrink-0 rounded-lg border-2 border-zinc-900 px-2.5 py-0.5 text-[10px] sm:text-xs font-bold uppercase tracking-wider shadow-[1px_1px_0_#111] transition-transform hover:-translate-y-0.5 dark:border-zinc-200/30 text-center leading-snug ${domainColors[cleanRole] ?? "bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100"}`}>
+                  {cleanRole === "Faculty Coordinator" ? (
+                    <>
+                      Faculty
+                      <br />
+                      Coordinator
+                    </>
+                  ) : (
+                    cleanRole
+                  )}
                 </span>
               );
             })()}
@@ -114,9 +122,9 @@ function MentorCard({ person, index }: { person: Person; index: number }) {
               href={person.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-zinc-900 bg-[#0A66C2] px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#111] transition-all duration-200 hover:-translate-y-0.5 hover:bg-[#004182] hover:shadow-[3px_3px_0_#111] active:translate-y-0 active:shadow-[1px_1px_0_#111] dark:border-zinc-200/40 dark:shadow-[2px_2px_0_#000]"
+              className="flex items-center gap-2 rounded-xl border-2 border-zinc-900 bg-zinc-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-(--accent-lime) dark:border-zinc-200/30 dark:bg-zinc-800 dark:text-zinc-100 dark:shadow-[2px_2px_0_#000]"
             >
-              <LinkedInIcon className="h-4 w-4 fill-current text-white shrink-0" />
+              <LinkedInIcon className="h-4 w-4 shrink-0" />
               <span>LinkedIn</span>
             </a>
           )}
@@ -125,9 +133,9 @@ function MentorCard({ person, index }: { person: Person; index: number }) {
               href={person.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-xl border-2 border-zinc-900 bg-zinc-900 px-4 py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#111] transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-[3px_3px_0_#111] active:translate-y-0 active:shadow-[1px_1px_0_#111] dark:border-zinc-200/40 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200 dark:shadow-[2px_2px_0_#000]"
+              className="flex items-center gap-2 rounded-xl border-2 border-zinc-900 bg-zinc-100 px-4 py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-(--accent-lavender) dark:border-zinc-200/30 dark:bg-zinc-800 dark:text-zinc-100 dark:shadow-[2px_2px_0_#000]"
             >
-              <GitHubIcon className="h-4 w-4 fill-current shrink-0" />
+              <GitHubIcon className="h-4 w-4 shrink-0" />
               <span>GitHub</span>
             </a>
           )}
