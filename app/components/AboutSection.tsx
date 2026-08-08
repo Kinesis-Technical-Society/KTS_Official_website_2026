@@ -17,22 +17,19 @@ export default function AboutSection() {
           </p>
         </div>
 
-        <div className="grid overflow-hidden border border-zinc-900/20 bg-white/70 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 dark:border-zinc-200/15 dark:bg-[#141414]/80 divide-y divide-zinc-900/20 sm:divide-y-0 sm:divide-x-0 dark:divide-zinc-200/15">
+        <div className="grid overflow-hidden border border-zinc-900/20 bg-white/70 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 dark:border-zinc-200/15 dark:bg-[#141414]/80 divide-y divide-zinc-900/20 sm:divide-y-0 sm:divide-x-0 dark:divide-zinc-200/15">
 
           {/* Web Development */}
           <div className="flex flex-col gap-4 border-b border-zinc-900/20 p-6 sm:border-r lg:border-b-0 dark:border-zinc-200/15">
             <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
               01
             </span>
-
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111]">
               🌐
             </span>
-
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Web Development
             </h3>
-
             <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
               Build modern, responsive, and scalable web applications from scratch.
             </p>
@@ -43,15 +40,12 @@ export default function AboutSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
               02
             </span>
-
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-lavender)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111]">
               🤖
             </span>
-
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Android Development
             </h3>
-
             <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
               Create powerful Android applications with modern development tools.
             </p>
@@ -62,15 +56,12 @@ export default function AboutSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
               03
             </span>
-
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-sky)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111]">
               🎨
             </span>
-
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               UI/UX Design
             </h3>
-
             <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
               Design intuitive, user-friendly interfaces with exceptional experiences.
             </p>
@@ -81,15 +72,12 @@ export default function AboutSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
               04
             </span>
-
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-[var(--accent-amber)] text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111]">
               🧩
             </span>
-
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Competitive Programming
             </h3>
-
             <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
               Strengthen problem-solving skills through coding contests and DSA.
             </p>
@@ -100,20 +88,16 @@ export default function AboutSection() {
             <span className="text-xs font-semibold uppercase tracking-widest text-zinc-400">
               05
             </span>
-
             <span className="flex h-11 w-11 items-center justify-center rounded-xl border-2 border-zinc-900 bg-pink-300 text-lg font-bold text-zinc-900 shadow-[0_3px_0_#111]">
               🤖
             </span>
-
             <h3 className="text-xl font-semibold text-zinc-900 dark:text-zinc-100">
               Machine Learning
             </h3>
-
             <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-300">
               Explore AI models, data-driven solutions, and intelligent applications.
             </p>
           </div>
-
         </div>
       </div>
     </section>

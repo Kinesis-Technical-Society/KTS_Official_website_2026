@@ -15,8 +15,10 @@ export default function Home() {
         <MarqueeSection />
         <AboutSection />
         <CultureSection />
-        <ContactSection />
-        <FooterSection />
+        <div className="flex flex-col">
+          <ContactSection />
+          <FooterSection />
+        </div>
       </div>
     </main>
   );
