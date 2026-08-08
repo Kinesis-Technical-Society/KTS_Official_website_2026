@@ -41,6 +41,8 @@ export const metadata: Metadata = {
   },
 };
 
+import UpcomingEventsBanner from "./components/UpcomingEventsBanner";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +54,10 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${spaceGrotesk.variable} ${geistMono.variable} ${dmSerif.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <UpcomingEventsBanner />
+        {children}
+      </body>
     </html>
   );
 }

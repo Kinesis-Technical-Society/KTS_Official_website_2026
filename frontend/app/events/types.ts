@@ -2,10 +2,10 @@ import { ReactNode } from "react";
 
 export interface Event {
   type?: ReactNode;
-  id: number;
+  id: number | string;
   title: string;
   date: string;
-  status: "upcoming" | "past";
+  status: "upcoming" | "brewing" | "past";
   description: string;
   tags: string[];
   participants?: number;
@@ -16,5 +16,5 @@ export interface Event {
   accent: string;
   gradient: string;
   photos: string[];
-  photoColors: string[];
+  photoColors?: string[];
 }

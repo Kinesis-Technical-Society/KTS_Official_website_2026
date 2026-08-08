@@ -93,6 +93,49 @@ body::-webkit-scrollbar-corner,
   background: var(--scrollbar-track);
 }
 
+/* Dedicated Admin Panel Scrollbar (Dark Zinc + Neon Lime theme) */
+.admin-theme,
+.admin-theme *,
+[data-admin-theme="true"],
+[data-admin-theme="true"] * {
+  color-scheme: dark;
+  scrollbar-width: thin;
+  scrollbar-color: #3f3f46 #09090b;
+}
+
+.admin-theme::-webkit-scrollbar,
+.admin-theme *::-webkit-scrollbar,
+[data-admin-theme="true"]::-webkit-scrollbar,
+[data-admin-theme="true"] *::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+.admin-theme::-webkit-scrollbar-track,
+.admin-theme *::-webkit-scrollbar-track,
+[data-admin-theme="true"]::-webkit-scrollbar-track,
+[data-admin-theme="true"] *::-webkit-scrollbar-track {
+  background: #09090b;
+}
+
+.admin-theme::-webkit-scrollbar-thumb,
+.admin-theme *::-webkit-scrollbar-thumb,
+[data-admin-theme="true"]::-webkit-scrollbar-thumb,
+[data-admin-theme="true"] *::-webkit-scrollbar-thumb {
+  background-color: #27272a;
+  border-radius: 9999px;
+  border: 2px solid #09090b;
+}
+
+.admin-theme::-webkit-scrollbar-thumb:hover,
+.admin-theme *::-webkit-scrollbar-thumb:hover,
+[data-admin-theme="true"]::-webkit-scrollbar-thumb:hover,
+[data-admin-theme="true"] *::-webkit-scrollbar-thumb:hover {
+  background-color: #bcf954;
+  box-shadow: 0 0 12px rgba(188, 249, 84, 0.6);
+}
+
+
 html,
 body {
   max-width: 100%;

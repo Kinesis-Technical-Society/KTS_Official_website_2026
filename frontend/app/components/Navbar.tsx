@@ -15,6 +15,7 @@ export default function Navbar() {
     { name: "Team", href: "/team", colorClass: "nav-underline-sky" },
     { name: "Projects", href: "/projects", colorClass: "nav-underline-lavender" },
     { name: "Events", href: "/events", colorClass: "nav-underline-amber" },
+    { name: "Admin", href: "/admin", colorClass: "nav-underline-rose" },
   ];
 
   const isLinkActive = (href: string) => {

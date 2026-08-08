@@ -1,0 +1,18 @@
+{
+  "name": "kts-backend",
+  "version": "1.0.0",
+  "description": "Backend API for KTS Official Website 2026 - Events & Admin Management",
+  "main": "server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.10.0"
+  }
+}
