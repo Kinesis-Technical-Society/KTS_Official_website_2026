@@ -1,0 +1,114 @@
+[
+  {
+    "name": "Aarav Sharma",
+    "role": "Coordinator",
+    "domain": "Web",
+    "photo": "/coreteam/web_lead.jpeg",
+    "bio": "Frontend enthusiast passionate about building high-performance modern web apps.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Dr. Ritesh Kumar",
+    "role": "Mentor",
+    "domain": "Web",
+    "photo": "/mentors/hodSir.webp",
+    "bio": "Guiding web architecture and full-stack development best practices.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Priya Verma",
+    "role": "Coordinator",
+    "domain": "Android",
+    "photo": "/coreteam/android_lead.jpeg",
+    "bio": "Crafting native Kotlin apps with clean UI and buttery-smooth user flows.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Vikram Malhotra",
+    "role": "Mentor",
+    "domain": "Android",
+    "photo": "/coreteam/technical_lead.jpeg",
+    "bio": "Mobile ecosystem expert mentoring students on scalable Android apps.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Siddharth Roy",
+    "role": "Coordinator",
+    "domain": "ML",
+    "photo": "/coreteam/ml_lead.jpeg",
+    "bio": "Exploring neural networks, PyTorch, and generative AI systems.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Prof. Neha Gupta",
+    "role": "Mentor",
+    "domain": "ML",
+    "photo": "/mentors/ShivaniMam.webp",
+    "bio": "Directing research in machine learning and data science applications.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Rohan Mehta",
+    "role": "Coordinator",
+    "domain": "DSA",
+    "photo": "/coreteam/dsa_lead.jpeg",
+    "bio": "Competitive programmer with a passion for algorithms and problem solving.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Aditya Kapur",
+    "role": "Mentor",
+    "domain": "DSA",
+    "photo": "/coreteam/project_lead.jpeg",
+    "bio": "Helping students master complex algorithms and dynamic programming.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Sneha Reddy",
+    "role": "Coordinator",
+    "domain": "UIUX",
+    "photo": "/coreteam/ui_lead.jpeg",
+    "bio": "Designing intuitive user interfaces, micro-interactions, and visual systems.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Kavita Rao",
+    "role": "Mentor",
+    "domain": "UIUX",
+    "photo": "/coreteam/prlead.jpeg",
+    "bio": "Mentoring design thinking, user research, and accessibility standards.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Devansh Singh",
+    "role": "Coordinator",
+    "domain": "Web",
+    "photo": "/coreteam/secretary.jpeg",
+    "bio": "Backend dev building REST APIs, databases, and serverless workflows.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Ananya Joshi",
+    "role": "Coordinator",
+    "domain": "Android",
+    "photo": "/coreteam/management_lead.jpeg",
+    "bio": "Focusing on Flutter cross-platform mobile app development.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Ishaan Chawla",
+    "role": "Coordinator",
+    "domain": "ML",
+    "photo": "/coreteam/event_lead.jpeg",
+    "bio": "Building computer vision models and real-time object detection tools.",
+    "linkedin": "https://linkedin.com" 
+  },
+  {
+    "name": "Tanvi Saxena",
+    "role": "Coordinator",
+    "domain": "UIUX",
+    "photo": "/coreteam/vicepresident.jpeg",
+    "bio": "Creating interactive Figma prototypes and design components.",
+    "linkedin": "https://linkedin.com" 
+  }
+]

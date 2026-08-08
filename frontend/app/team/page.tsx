@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Navbar from "../components/Navbar";
 import CoreTeamSection from "./components/CoreTeamSection";
+import CoordinatorsSection from "./components/CoordinatorsSection";
 import FounderSection from "./components/FounderSection";
 import MentorSection from "./components/MentorSection";
 import FooterSection from "../components/FooterSection";
@@ -107,6 +108,7 @@ export default function TeamPage() {
         <MentorSection />
 
         <CoreTeamSection />
+        <CoordinatorsSection />
 
         <section className="full-bleed border-b border-zinc-900/20 bg-zinc-900 dark:border-zinc-200/15">
           <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6">
@@ -130,7 +132,7 @@ export default function TeamPage() {
         <section className="full-bleed border-b border-zinc-900/20 bg-background dark:border-zinc-200/15">
           <div className="mx-auto w-full max-w-7xl px-4 py-16 sm:px-6">
             <div className="mb-10 flex flex-col gap-4">
-              <SectionLabel number="03" label="The OGs" />
+              <SectionLabel number="04" label="The OGs" />
               <h2 className="font-serif text-4xl leading-tight text-zinc-900 sm:text-5xl dark:text-zinc-100">
                 Where it all <span className="italic">started.</span>
               </h2>
