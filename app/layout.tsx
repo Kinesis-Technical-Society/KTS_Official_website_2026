@@ -23,7 +23,9 @@ export const metadata: Metadata = {
   description:
     "Kinesis Technical Society is the university's open source and innovation club.",
   icons: {
-    icon: "/kts-logo.webp",
+    icon: [
+      { url: "/kts-logo.webp", type: "image/webp" }, 
+    ],
   },
 };
 
