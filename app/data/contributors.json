@@ -1,7 +1,27 @@
-[ 
-  { "name": "Vashu Jain", "role": "Member", "linkedin": "https://www.linkedin.com" }, 
-  { "name": "Yash Pratap Singh", "role": "Member", "linkedin": "https://www.linkedin.com" }, 
-  { "name": "Vaishnavi", "role": "Member", "linkedin": "https://www.linkedin.com" },
-  { "name": "Piyush", "role": "Member", "linkedin": "https://www.linkedin.com" },
-  { "name": "Yash Singhal", "role": "Member", "linkedin": "https://www.linkedin.com" }
+[
+  {
+    "name": "Vashu Jain",
+    "role": "Technical Lead",
+    "linkedin": "https://www.linkedin.com/in/vashujain/"
+  },
+  {
+    "name": "Yash Pratap Singh",
+    "role": "Vice President",
+    "linkedin": "https://www.linkedin.com/in/yash-pratap-singh-9012362a8/"
+  },
+  {
+    "name": "Vaishnavi Rajawat",
+    "role": "Web Coordinator",
+    "linkedin": "https://www.linkedin.com/in/vaishnavi-rajawat-a22552362/"
+  },
+  {
+    "name": "Piyush Kumar Raj",
+    "role": "Web Coordinator",
+    "linkedin": "https://www.linkedin.com/in/piyushsinha0408/"
+  },
+  {
+    "name": "Yash Singhal",
+    "role": "Web Coordinator",
+    "linkedin": "https://www.linkedin.com/in/yash-singhal-94894b317/"
+  }
 ]
