@@ -69,7 +69,7 @@ export async function fetchEvents(status?: string): Promise<EventItem[]> {
       ? `${baseUrl}/events?status=${encodeURIComponent(status)}`
       : `${baseUrl}/events`;
 
-    const res = await fetch(url, { cache: "no-store" });
+    const res = await fetch(url, { next: { revalidate: 30 } });
     if (!res.ok) {
       throw new Error(`Error status ${res.status}`);
     }
@@ -147,7 +147,7 @@ export async function deleteEvent(id: string, token: string) {
 export async function fetchProjects(): Promise<ProjectItem[]> {
   try {
     const baseUrl = getApiBaseUrl();
-    const res = await fetch(`${baseUrl}/projects`, { cache: "no-store" });
+    const res = await fetch(`${baseUrl}/projects`, { next: { revalidate: 30 } });
     if (!res.ok) {
       throw new Error(`Error status ${res.status}`);
     }

@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  output: "standalone",
   reactStrictMode: true,
   compress: true,
   poweredByHeader: false,
@@ -31,7 +32,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/kts-logo.webp",
+        source: "/:all*(svg|jpg|jpeg|png|webp|avif|gif|ico|woff|woff2|ttf|css|js)",
         headers: [
           {
             key: "Cache-Control",

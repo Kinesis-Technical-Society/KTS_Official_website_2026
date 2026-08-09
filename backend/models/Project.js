@@ -59,4 +59,7 @@ ProjectSchema.pre("validate", function (next) {
   next();
 });
 
+// Index for sorting projects by creation date
+ProjectSchema.index({ createdAt: -1 });
+
 module.exports = mongoose.model("Project", ProjectSchema);

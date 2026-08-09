@@ -3,6 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const Project = require("../models/Project");
 const authMiddleware = require("../middleware/authMiddleware");
+const { cacheMiddleware, clearCache } = require("../middleware/cacheMiddleware");
 const router = express.Router();
 
 // Helper to seed initial projects if collection is empty
@@ -40,10 +41,10 @@ const seedInitialProjectsIfEmpty = async () => {
  * @desc    Fetch all projects (auto-seeds initial projects if DB empty)
  * @access  Public
  */
-router.get("/", async (req, res) => {
+router.get("/", cacheMiddleware(60), async (req, res) => {
   try {
     await seedInitialProjectsIfEmpty();
-    const projects = await Project.find().sort({ createdAt: -1 });
+    const projects = await Project.find().sort({ createdAt: -1 }).lean();
     return res.status(200).json({
       success: true,
       count: projects.length,
@@ -63,9 +64,9 @@ router.get("/", async (req, res) => {
  * @desc    Get single project by ID
  * @access  Public
  */
-router.get("/:id", async (req, res) => {
+router.get("/:id", cacheMiddleware(60), async (req, res) => {
   try {
-    const project = await Project.findById(req.params.id);
+    const project = await Project.findById(req.params.id).lean();
     if (!project) {
       return res.status(404).json({
         success: false,
@@ -140,6 +141,7 @@ router.post("/", authMiddleware, async (req, res) => {
     });
 
     const savedProject = await newProject.save();
+    clearCache("/api/projects");
 
     return res.status(201).json({
       success: true,
@@ -201,6 +203,8 @@ router.put("/:id", authMiddleware, async (req, res) => {
       runValidators: true,
     });
 
+    clearCache("/api/projects");
+
     return res.status(200).json({
       success: true,
       message: "Project updated successfully",
@@ -226,6 +230,9 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     if (!deleted) {
       return res.status(404).json({ success: false, message: "Project not found" });
     }
+
+    clearCache("/api/projects");
+
     return res.status(200).json({
       success: true,
       message: "Project deleted successfully",

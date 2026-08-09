@@ -1,6 +1,7 @@
 const express = require("express");
 const Event = require("../models/Event");
 const authMiddleware = require("../middleware/authMiddleware");
+const { cacheMiddleware, clearCache } = require("../middleware/cacheMiddleware");
 const router = express.Router();
 
 /**
@@ -8,7 +9,7 @@ const router = express.Router();
  * @desc    Fetch all events (with optional status query filter, e.g. ?status=upcoming)
  * @access  Public
  */
-router.get("/", async (req, res) => {
+router.get("/", cacheMiddleware(60), async (req, res) => {
   try {
     const { status } = req.query;
     const query = {};
@@ -20,7 +21,7 @@ router.get("/", async (req, res) => {
       }
     }
 
-    const events = await Event.find(query).sort({ createdAt: -1 });
+    const events = await Event.find(query).sort({ createdAt: -1 }).lean();
     return res.status(200).json({
       success: true,
       count: events.length,
@@ -40,9 +41,9 @@ router.get("/", async (req, res) => {
  * @desc    Get single event by ID
  * @access  Public
  */
-router.get("/:id", async (req, res) => {
+router.get("/:id", cacheMiddleware(60), async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
+    const event = await Event.findById(req.params.id).lean();
     if (!event) {
       return res.status(404).json({
         success: false,
@@ -110,6 +111,8 @@ router.post("/", authMiddleware, async (req, res) => {
       photos: Array.isArray(photos) ? photos : [],
     });
 
+    clearCache("/api/events");
+
     return res.status(201).json({
       success: true,
       message: "Event created successfully!",
@@ -158,6 +161,7 @@ router.post("/bulk", authMiddleware, async (req, res) => {
     }));
 
     const insertedEvents = await Event.insertMany(formattedEvents);
+    clearCache("/api/events");
 
     return res.status(201).json({
       success: true,
@@ -203,6 +207,8 @@ router.put("/:id", authMiddleware, async (req, res) => {
       });
     }
 
+    clearCache("/api/events");
+
     return res.status(200).json({
       success: true,
       message: "Event updated successfully!",
@@ -233,6 +239,8 @@ router.delete("/:id", authMiddleware, async (req, res) => {
         message: "Event not found for deletion.",
       });
     }
+
+    clearCache("/api/events");
 
     return res.status(200).json({
       success: true,

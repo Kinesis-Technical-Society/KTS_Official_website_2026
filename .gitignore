@@ -55,8 +55,14 @@ env/
 *.swo
 *.sublime-workspace
 
-# OS Files
+# OS & Temp Files
 .DS_Store
 Thumbs.db
 ehthumbs.db
 Desktop.ini
+.cache/
+**/.cache/
+.turbo/
+tmp/
+*.pem
+
