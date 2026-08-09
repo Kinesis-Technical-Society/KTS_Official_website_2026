@@ -1,3 +1,5 @@
+import projectsFallback from "../data/projects.json";
+
 export function getApiBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
@@ -30,6 +32,22 @@ export interface EventItem {
   updatedAt?: string;
 }
 
+export interface ProjectItem {
+  _id?: string;
+  id?: string;
+  title: string;
+  description: string;
+  techStack: string[];
+  domain: string;
+  linkedinUrl: string;
+  githubLink?: string;
+  githubUrl?: string;
+  liveLink?: string;
+  liveUrl?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
 export async function loginAdmin(email: string, password: string) {
   const res = await fetch(`${getApiBaseUrl()}/admin/login`, {
     method: "POST",
@@ -43,6 +61,7 @@ export async function loginAdmin(email: string, password: string) {
   return data;
 }
 
+/* Event APIs */
 export async function fetchEvents(status?: string): Promise<EventItem[]> {
   try {
     const baseUrl = getApiBaseUrl();
@@ -120,6 +139,81 @@ export async function deleteEvent(id: string, token: string) {
   const data = await res.json();
   if (!res.ok) {
     throw new Error(data.message || "Failed to delete event");
+  }
+  return data;
+}
+
+/* Project APIs */
+export async function fetchProjects(): Promise<ProjectItem[]> {
+  try {
+    const baseUrl = getApiBaseUrl();
+    const res = await fetch(`${baseUrl}/projects`, { cache: "no-store" });
+    if (!res.ok) {
+      throw new Error(`Error status ${res.status}`);
+    }
+    const data = await res.json();
+    if (data.data && Array.isArray(data.data) && data.data.length > 0) {
+      return data.data;
+    }
+  } catch (error) {
+    console.warn("Failed to fetch projects from backend API, using fallback projects.json:", error);
+  }
+
+  // Fallback to projects.json
+  return (projectsFallback as any[]).map((p, idx) => ({
+    _id: String(idx + 1),
+    title: p.title,
+    description: p.description,
+    techStack: p.techStack || p.tags || [],
+    domain: p.domain || p.category || "Web Development",
+    linkedinUrl: p.linkedinUrl || "",
+    githubLink: p.githubLink || p.githubUrl || "",
+    liveLink: p.liveLink || p.liveUrl || "",
+  }));
+}
+
+export async function createProject(projectData: Partial<ProjectItem>, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/projects`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(projectData),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to create project");
+  }
+  return data;
+}
+
+export async function updateProject(id: string, projectData: Partial<ProjectItem>, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/projects/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(projectData),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update project");
+  }
+  return data;
+}
+
+export async function deleteProject(id: string, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/projects/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to delete project");
   }
   return data;
 }

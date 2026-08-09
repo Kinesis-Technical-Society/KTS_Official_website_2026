@@ -1,5 +1,6 @@
 # Dependencies
 node_modules/
+**/node_modules/
 .pnp
 .pnp.*
 .yarn/*
@@ -10,10 +11,12 @@ node_modules/
 
 # Next.js & Build outputs
 .next/
+**/.next/
 out/
 build/
 dist/
 *.tsbuildinfo
+**/*.tsbuildinfo
 next-env.d.ts
 
 # Testing & Coverage
@@ -30,6 +33,7 @@ yarn-error.log*
 # Environment files
 .env
 .env.*
+.env.local
 !.env.example
 
 # Vercel & Deployment

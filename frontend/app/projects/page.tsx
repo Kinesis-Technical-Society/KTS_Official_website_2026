@@ -1,46 +1,47 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterSection from "../components/FooterSection";
-import projectsData from "../data/projects.json";
-
-interface RawProject {
-  id?: string;
-  title: string;
-  category?: string;
-  domain?: string;
-  description: string;
-  tags?: string[];
-  techStack?: string[];
-  stars?: number;
-  githubUrl?: string;
-  githubLink?: string;
-  liveUrl?: string;
-  liveLink?: string;
-  featured?: boolean;
-  linkedinUrl?: string;
-}
+import { fetchProjects, ProjectItem } from "../services/api";
 
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [rawProjects, setRawProjects] = useState<ProjectItem[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  const projectsList = (projectsData as RawProject[]).map((p, idx) => ({
-    id: p.id || String(idx + 1),
+  useEffect(() => {
+    async function loadProjects() {
+      setLoading(true);
+      try {
+        const data = await fetchProjects();
+        setRawProjects(data);
+      } catch (err) {
+        console.error("Failed to load projects:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadProjects();
+  }, []);
+
+  const projectsList = rawProjects.map((p, idx) => ({
+    id: p._id || p.id || String(idx + 1),
     title: p.title,
-    category: p.domain || p.category || "General",
+    category: p.domain || "General",
     description: p.description,
-    tags: p.techStack || p.tags || [],
-    githubUrl: p.githubLink || p.githubUrl,
-    liveUrl: p.liveLink || p.liveUrl,
-    featured: p.featured,
-    linkedinUrl: p.linkedinUrl,
+    tags: Array.isArray(p.techStack) ? p.techStack : [],
+    githubUrl: p.githubLink || p.githubUrl || "",
+    liveUrl: p.liveLink || p.liveUrl || "",
+    linkedinUrl: p.linkedinUrl || "",
   }));
 
-  const categories = [
-    "All",
-    ...Array.from(new Set(projectsList.map((p) => p.category))),
-  ];
+  // Unique categories derived dynamically from fetched projects
+  const dynamicCategories = Array.from(
+    new Set(projectsList.map((p) => p.category).filter(Boolean))
+  );
+
+  const categories = ["All", ...dynamicCategories];
   if (!categories.includes("Android Development")) {
     categories.push("Android Development");
   }
@@ -51,18 +52,18 @@ export default function ProjectsPage() {
       : projectsList.filter((p) => p.category === activeCategory);
 
   return (
-    <main className="hero-grid flex-1">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-12 px-4 pb-0 pt-6 sm:px-6">
+    <main className="hero-grid flex-1 min-h-screen">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-10 px-4 pb-12 pt-6 sm:px-6">
         <Navbar />
 
         {/* Hero Banner */}
-        <section className="hero-rise mt-4 flex flex-col gap-6">
+        <section className="hero-rise mt-2 flex flex-col gap-6">
           <div className="inline-flex items-center gap-2 self-start rounded-lg border-2 border-[#121212] bg-white px-3 py-1 text-xs font-bold shadow-[2px_2px_0px_0px_#121212] dark:border-zinc-200/40 dark:bg-[#151515] dark:text-zinc-100">
             <span className="h-2 w-2 animate-pulse rounded-full bg-[var(--accent-lavender)]" />
             SHOWCASE & LABS
           </div>
 
-          <h1 className="font-display text-4xl font-bold uppercase leading-[0.95] text-[#121212] md:text-6xl lg:text-7xl dark:text-[#f3f2eb]">
+          <h1 className="font-display text-4xl font-bold uppercase leading-[0.95] text-[#121212] sm:text-5xl md:text-6xl lg:text-7xl dark:text-[#f3f2eb]">
             PROJECTS BUILT BY <br />
             <span className="bg-[var(--accent-lavender)] px-2 text-[#121212]">THE COMMUNITY.</span>
           </h1>
@@ -79,19 +80,25 @@ export default function ProjectsPage() {
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`rounded-xl border-2 border-zinc-900 px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0_#111] transition-all hover:-translate-y-0.5 dark:border-zinc-200/40 ${activeCategory === category
-                ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                : "bg-white text-zinc-900 hover:bg-zinc-100 dark:bg-[#151515] dark:text-zinc-200 dark:hover:bg-zinc-800"
-                }`}
+              className={`rounded-xl border-2 border-zinc-900 px-4 py-2 text-xs font-bold uppercase tracking-wider shadow-[2px_2px_0_#111] transition-all hover:-translate-y-0.5 dark:border-zinc-200/40 ${
+                activeCategory === category
+                  ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+                  : "bg-white text-zinc-900 hover:bg-zinc-100 dark:bg-[#151515] dark:text-zinc-200 dark:hover:bg-zinc-800"
+              }`}
             >
               {category}
             </button>
           ))}
         </div>
 
-        {/* Projects Grid / Empty State */}
-        {filteredProjects.length > 0 ? (
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {/* Loading Spinner */}
+        {loading ? (
+          <div className="flex flex-col items-center justify-center py-20">
+            <div className="h-12 w-12 animate-spin rounded-full border-4 border-zinc-900 border-t-transparent dark:border-white dark:border-t-transparent" />
+            <p className="mt-4 font-semibold text-zinc-700 dark:text-zinc-300">Loading projects...</p>
+          </div>
+        ) : filteredProjects.length > 0 ? (
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
@@ -124,37 +131,37 @@ export default function ProjectsPage() {
                   </div>
                 </div>
 
-                <div className="mt-6 flex items-center gap-3 border-t border-zinc-900/10 pt-4 dark:border-zinc-200/10">
-                  {project.linkedinUrl && (
+                <div className="mt-6 flex flex-wrap items-center gap-2.5 border-t border-zinc-900/10 pt-4 dark:border-zinc-200/10">
+                  {project.linkedinUrl ? (
                     <a
                       href={project.linkedinUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border-2 border-zinc-900 bg-[#0a66c2] py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-[#084e96] dark:border-zinc-200/40 dark:shadow-[2px_2px_0_#000]"
+                      className="flex flex-1 min-w-[80px] items-center justify-center gap-1.5 rounded-xl border-2 border-zinc-900 bg-[#0a66c2] py-2 text-xs font-bold uppercase tracking-wider text-white shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-[#084e96] dark:border-zinc-200/40 dark:shadow-[2px_2px_0_#000]"
                     > 
                       <span>Owner</span>
                     </a>
-                  )}
-                  {project.githubUrl && (
+                  ) : null}
+                  {project.githubUrl ? (
                     <a
                       href={project.githubUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-zinc-900 bg-zinc-100 py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-[var(--accent-lavender)] dark:border-zinc-200/30 dark:bg-zinc-800 dark:text-zinc-100 dark:shadow-[2px_2px_0_#000]"
+                      className="flex flex-1 min-w-[80px] items-center justify-center gap-2 rounded-xl border-2 border-zinc-900 bg-zinc-100 py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 hover:bg-[var(--accent-lavender)] dark:border-zinc-200/30 dark:bg-zinc-800 dark:text-zinc-100 dark:shadow-[2px_2px_0_#000]"
                     >
                       GitHub
                     </a>
-                  )}
-                  {project.liveUrl && (
+                  ) : null}
+                  {project.liveUrl ? (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/30 dark:shadow-[2px_2px_0_#000]"
+                      className="flex flex-1 min-w-[80px] items-center justify-center gap-2 rounded-xl border-2 border-zinc-900 bg-[var(--accent-lime)] py-2 text-xs font-bold uppercase tracking-wider text-zinc-900 shadow-[2px_2px_0_#111] transition hover:-translate-y-0.5 dark:border-zinc-200/30 dark:shadow-[2px_2px_0_#000]"
                     >
                       Live Demo
                     </a>
-                  )}
+                  ) : null}
                 </div>
               </div>
             ))}
@@ -178,4 +185,3 @@ export default function ProjectsPage() {
     </main>
   );
 }
-
