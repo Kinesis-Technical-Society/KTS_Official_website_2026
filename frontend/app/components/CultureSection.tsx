@@ -1,4 +1,3 @@
-import Image from "next/image";
 
 export default function CultureSection() {
   return (
@@ -17,14 +16,15 @@ export default function CultureSection() {
           </div>
           <div className="relative w-full max-w-lg overflow-hidden rounded-2xl border border-emerald-700/25 bg-white/85 p-3 sm:p-4 shadow-[0_16px_40px_rgba(15,23,42,0.18)] dark:border-emerald-400/20 dark:bg-black/80 dark:shadow-[0_18px_50px_rgba(0,0,0,0.45)] mt-4 sm:mt-0">
             <div className="pointer-events-none absolute inset-0 rounded-2xl bg-[radial-gradient(circle_at_top,rgba(188,249,84,0.12),transparent_55%)]" />
-            <Image
-              src="/kts-showcase.gif"
-              alt="KTS showcase animation"
-              width={500}
-              height={300}
-              unoptimized
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
               className="relative z-10 h-auto w-full rounded-xl"
-            />
+            >
+              <source src="/kts-showcase.webm" type="video/webm" />
+            </video>
           </div>
         </div>
 

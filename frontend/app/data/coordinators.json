@@ -3,7 +3,7 @@
     "name": "Aarav Sharma",
     "role": "Coordinator",
     "domain": "Web",
-    "photo": "/coreteam/web_lead.jpeg",
+    "photo": "/coreteam/web_lead.webp",
     "bio": "Frontend enthusiast passionate about building high-performance modern web apps.",
     "linkedin": "https://linkedin.com" 
   },
@@ -19,7 +19,7 @@
     "name": "Priya Verma",
     "role": "Coordinator",
     "domain": "Android",
-    "photo": "/coreteam/android_lead.jpeg",
+    "photo": "/coreteam/android_lead.webp",
     "bio": "Crafting native Kotlin apps with clean UI and buttery-smooth user flows.",
     "linkedin": "https://linkedin.com" 
   },
@@ -27,7 +27,7 @@
     "name": "Vikram Malhotra",
     "role": "Mentor",
     "domain": "Android",
-    "photo": "/coreteam/technical_lead.jpeg",
+    "photo": "/coreteam/technical_lead.webp",
     "bio": "Mobile ecosystem expert mentoring students on scalable Android apps.",
     "linkedin": "https://linkedin.com" 
   },
@@ -35,7 +35,7 @@
     "name": "Siddharth Roy",
     "role": "Coordinator",
     "domain": "ML",
-    "photo": "/coreteam/ml_lead.jpeg",
+    "photo": "/coreteam/ml_lead.webp",
     "bio": "Exploring neural networks, PyTorch, and generative AI systems.",
     "linkedin": "https://linkedin.com" 
   },
@@ -51,7 +51,7 @@
     "name": "Rohan Mehta",
     "role": "Coordinator",
     "domain": "DSA",
-    "photo": "/coreteam/dsa_lead.jpeg",
+    "photo": "/coreteam/dsa_lead.webp",
     "bio": "Competitive programmer with a passion for algorithms and problem solving.",
     "linkedin": "https://linkedin.com" 
   },
@@ -59,7 +59,7 @@
     "name": "Aditya Kapur",
     "role": "Mentor",
     "domain": "DSA",
-    "photo": "/coreteam/project_lead.jpeg",
+    "photo": "/coreteam/project_lead.webp",
     "bio": "Helping students master complex algorithms and dynamic programming.",
     "linkedin": "https://linkedin.com" 
   },
@@ -67,7 +67,7 @@
     "name": "Sneha Reddy",
     "role": "Coordinator",
     "domain": "UIUX",
-    "photo": "/coreteam/ui_lead.jpeg",
+    "photo": "/coreteam/ui_lead.webp",
     "bio": "Designing intuitive user interfaces, micro-interactions, and visual systems.",
     "linkedin": "https://linkedin.com" 
   },
@@ -75,7 +75,7 @@
     "name": "Kavita Rao",
     "role": "Mentor",
     "domain": "UIUX",
-    "photo": "/coreteam/prlead.jpeg",
+    "photo": "/coreteam/prlead.webp",
     "bio": "Mentoring design thinking, user research, and accessibility standards.",
     "linkedin": "https://linkedin.com" 
   },
@@ -83,7 +83,7 @@
     "name": "Devansh Singh",
     "role": "Coordinator",
     "domain": "Web",
-    "photo": "/coreteam/secretary.jpeg",
+    "photo": "/coreteam/secretary.webp",
     "bio": "Backend dev building REST APIs, databases, and serverless workflows.",
     "linkedin": "https://linkedin.com" 
   },
@@ -91,7 +91,7 @@
     "name": "Ananya Joshi",
     "role": "Coordinator",
     "domain": "Android",
-    "photo": "/coreteam/management_lead.jpeg",
+    "photo": "/coreteam/management_lead.webp",
     "bio": "Focusing on Flutter cross-platform mobile app development.",
     "linkedin": "https://linkedin.com" 
   },
@@ -99,7 +99,7 @@
     "name": "Ishaan Chawla",
     "role": "Coordinator",
     "domain": "ML",
-    "photo": "/coreteam/event_lead.jpeg",
+    "photo": "/coreteam/event_lead.webp",
     "bio": "Building computer vision models and real-time object detection tools.",
     "linkedin": "https://linkedin.com" 
   },
@@ -107,7 +107,7 @@
     "name": "Tanvi Saxena",
     "role": "Coordinator",
     "domain": "UIUX",
-    "photo": "/coreteam/vicepresident.jpeg",
+    "photo": "/coreteam/vicepresident.webp",
     "bio": "Creating interactive Figma prototypes and design components.",
     "linkedin": "https://linkedin.com" 
   }

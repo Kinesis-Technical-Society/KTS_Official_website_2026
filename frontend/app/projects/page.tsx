@@ -53,7 +53,7 @@ export default function ProjectsPage() {
 
   return (
     <main className="hero-grid flex-1 min-h-screen">
-      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-10 px-4 pb-12 pt-6 sm:px-6">
+      <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col gap-10 px-4 pt-6 sm:px-6">
         <Navbar />
 
         {/* Hero Banner */}
