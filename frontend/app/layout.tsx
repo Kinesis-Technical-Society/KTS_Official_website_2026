@@ -55,8 +55,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`dark ${spaceGrotesk.variable} ${geistMono.variable} ${dmSerif.variable} h-full antialiased`}
     >
-      <head>
+      <body className="min-h-full flex flex-col">
         <script
+          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
@@ -74,8 +75,6 @@ export default function RootLayout({
             `,
           }}
         />
-      </head>
-      <body className="min-h-full flex flex-col">
         <UpcomingEventsBanner />
         {children}
       </body>

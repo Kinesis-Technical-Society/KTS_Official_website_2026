@@ -4,32 +4,7 @@ import { useEffect, useState } from "react";
 import { fetchEvents, EventItem } from "../services/api";
 import EventDetailsModal from "./EventDetailsModal";
 
-const DEFAULT_UPCOMING_EVENTS: EventItem[] = [
-  {
-    id: "default-1",
-    title: "KTS Hackathon 2026 — Build for Tomorrow",
-    date: "Coming Soon • March 2026",
-    status: "upcoming",
-    description:
-      "Annual flagship hackathon by Kinesis Technical Society featuring real-world challenges, open-source tracks, and exciting prize pools.",
-    location: "KIET Group of Institutions, Ghaziabad",
-    prize: "₹50,000+ Prize Pool & Swag Kits",
-    tags: ["Hackathon", "Open Source", "Innovation", "Development"],
-    highlights: ["48-Hour Hybrid Hackathon", "Mentorship from Industry Experts", "Swag Kits & Goodies"],
-  },
-  {
-    id: "default-2",
-    title: "Web3 & AI Tech Summit 2026",
-    date: "April 2026",
-    status: "brewing",
-    description:
-      "Hands-on workshops, keynote sessions, and live project demos on AI agents, LLMs, and decentralized technologies.",
-    location: "Auditorium, KIET Group of Institutions",
-    prize: "Certificates & Internship Opportunities",
-    tags: ["AI", "Web3", "Workshop", "Tech Talk"],
-    highlights: ["Live AI Agent Demos", "Keynote Talks by Alum Innovators"],
-  },
-];
+const DEFAULT_UPCOMING_EVENTS: EventItem[] = [];
 
 export default function UpcomingEventsBanner() {
   const [events, setEvents] = useState<EventItem[]>(DEFAULT_UPCOMING_EVENTS);

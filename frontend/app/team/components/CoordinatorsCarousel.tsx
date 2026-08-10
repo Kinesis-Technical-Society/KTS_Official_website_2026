@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import coordinatorsData from "../../data/coordinators.json";
 
 export type DomainType = "All" | "Web" | "Android" | "ML" | "DSA" | "UIUX";
@@ -44,14 +44,30 @@ const getInitials = (name: string) =>
     .join("")
     .toUpperCase();
 
+const normalizeDomain = (domain: string): DomainType | null => {
+  if (!domain) return null;
+  const d = domain.toUpperCase().trim();
+  if (d === "WEB") return "Web";
+  if (d === "ANDROID") return "Android";
+  if (d === "ML") return "ML";
+  if (d.includes("DSA") || d.includes("CP")) return "DSA";
+  if (d.includes("UI") || d.includes("UX")) return "UIUX";
+  return null;
+};
+
 export default function CoordinatorsCarousel() {
+  const [mounted, setMounted] = useState(false);
   const [selectedDomain, setSelectedDomain] = useState<DomainType>("All");
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Filter list by selected domain
   const filteredList = useMemo(() => {
     if (selectedDomain === "All") return coordinators;
-    return coordinators.filter((item) => item.domain === selectedDomain);
+    return coordinators.filter((item) => normalizeDomain(item.domain) === selectedDomain);
   }, [selectedDomain]);
 
   // Calculate count for domain tabs
@@ -65,8 +81,9 @@ export default function CoordinatorsCarousel() {
       UIUX: 0,
     };
     coordinators.forEach((item) => {
-      if (counts[item.domain] !== undefined) {
-        counts[item.domain]++;
+      const norm = normalizeDomain(item.domain);
+      if (norm && counts[norm] !== undefined) {
+        counts[norm]++;
       }
     });
     return counts;
@@ -90,7 +107,7 @@ export default function CoordinatorsCarousel() {
   return (
     <div className="w-full space-y-8">
       {/* Domain Selection Pills Bar */}
-      <div className="flex flex-wrap items-center justify-start gap-2.5 sm:gap-3">
+      <div suppressHydrationWarning className="flex flex-wrap items-center justify-start gap-2.5 sm:gap-3">
         {DOMAINS.map((domain) => {
           const isActive = selectedDomain === domain.id;
           const count = domainCounts[domain.id];
@@ -107,6 +124,7 @@ export default function CoordinatorsCarousel() {
             >
               <span>{domain.label}</span>
               <span
+                suppressHydrationWarning
                 className={`rounded-md px-1.5 py-0.5 text-[10px] font-extrabold ${
                   isActive
                     ? "bg-zinc-900 text-white dark:bg-zinc-900 dark:text-white"
@@ -123,7 +141,7 @@ export default function CoordinatorsCarousel() {
       {/* Carousel Section Header & Controls */}
       <div className="flex items-center justify-between border-b-2 border-zinc-900/10 pb-4 dark:border-zinc-200/10">
         <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-          <span>Showing {filteredList.length} member{filteredList.length === 1 ? "" : "s"}</span>
+          <span suppressHydrationWarning>Showing {filteredList.length} member{filteredList.length === 1 ? "" : "s"}</span>
           {selectedDomain !== "All" && (
             <span className="rounded-md border border-zinc-900/20 bg-zinc-100 px-2 py-0.5 text-zinc-900 dark:border-zinc-200/20 dark:bg-zinc-800 dark:text-zinc-100">
               {selectedDomain}
@@ -210,7 +228,7 @@ export default function CoordinatorsCarousel() {
                           <img
                             src={person.photo}
                             alt={person.name}
-                            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                            className="h-full w-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-110"
                           />
                         ) : (
                           <div className="flex h-full w-full items-center justify-center text-3xl font-extrabold text-white">
