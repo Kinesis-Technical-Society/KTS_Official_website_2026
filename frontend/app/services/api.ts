@@ -1,12 +1,23 @@
 export function getApiBaseUrl(): string {
-  if (process.env.NEXT_PUBLIC_API_URL) {
-    return process.env.NEXT_PUBLIC_API_URL;
+  let url = process.env.NEXT_PUBLIC_API_URL;
+  if (!url) {
+    if (typeof window !== "undefined") {
+      const hostname = window.location.hostname;
+      url = `http://${hostname}:5000/api`;
+    } else {
+      url = "http://localhost:5000/api";
+    }
   }
-  if (typeof window !== "undefined") {
-    const hostname = window.location.hostname;
-    return `http://${hostname}:5000/api`;
+
+  // Prevent Mixed Content errors (e.g., HTTPS frontend requesting HTTP backend)
+  const isHttpsPage = typeof window !== "undefined" && window.location.protocol === "https:";
+  const isRemoteHost = !url.includes("localhost") && !url.includes("127.0.0.1");
+
+  if ((isHttpsPage || isRemoteHost) && url.startsWith("http://")) {
+    url = url.replace(/^http:\/\//i, "https://");
   }
-  return "http://localhost:5000/api";
+
+  return url;
 }
 
 export interface EventItem {
