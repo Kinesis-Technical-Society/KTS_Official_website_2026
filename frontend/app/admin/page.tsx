@@ -492,7 +492,7 @@ export default function AdminPage() {
               <input
                 type="email"
                 required
-                placeholder="admin@kts.edu"
+                placeholder="Enter admin email"
                 value={emailInput}
                 onChange={(e) => setEmailInput(e.target.value)}
                 className="w-full px-4 py-3 rounded-2xl bg-zinc-50 border border-zinc-300 text-zinc-900 dark:bg-[#09090b] dark:border-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#bcf954] transition-all"
@@ -506,7 +506,7 @@ export default function AdminPage() {
               <input
                 type="password"
                 required
-                placeholder="••••••••"
+                placeholder="Enter admin password"
                 value={passwordInput}
                 onChange={(e) => setPasswordInput(e.target.value)}
                 className="w-full px-4 py-3 rounded-2xl bg-zinc-50 border border-zinc-300 text-zinc-900 dark:bg-[#09090b] dark:border-zinc-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-[#bcf954] transition-all"
