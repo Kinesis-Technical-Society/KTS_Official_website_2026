@@ -70,6 +70,7 @@ if (isProd && cluster.isPrimary) {
   app.use("/api/admin", require("./routes/authRoutes"));
   app.use("/api/events", require("./routes/eventRoutes"));
   app.use("/api/projects", require("./routes/projectRoutes"));
+  app.use("/api/team", require("./routes/teamRoutes"));
 
   // Health check endpoint
   app.get("/api/health", (req, res) => {

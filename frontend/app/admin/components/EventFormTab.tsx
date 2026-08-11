@@ -164,13 +164,13 @@ export function EventFormTab({
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
               <span className="block text-[11px] text-zinc-500 mb-1">
-                Upload File
+                Upload .webp Image (&lt; 1MB)
               </span>
               <label className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-dashed border-zinc-300 dark:bg-zinc-900 dark:border-zinc-700 hover:border-[#bcf954] text-zinc-700 dark:text-zinc-300 cursor-pointer transition-all">
-                <span className="text-xs font-semibold">Choose File...</span>
+                <span className="text-xs font-semibold">Choose .webp File...</span>
                 <input
                   type="file"
-                  accept="image/*"
+                  accept="image/webp,.webp"
                   className="hidden"
                   onChange={(e) => {
                     const file = e.target.files?.[0];

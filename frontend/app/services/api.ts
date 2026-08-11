@@ -1,5 +1,3 @@
-import projectsFallback from "../data/projects.json";
-
 export function getApiBaseUrl(): string {
   if (process.env.NEXT_PUBLIC_API_URL) {
     return process.env.NEXT_PUBLIC_API_URL;
@@ -97,22 +95,6 @@ export async function createEvent(eventData: Partial<EventItem>, token: string) 
   return data;
 }
 
-export async function bulkCreateEvents(events: Partial<EventItem>[], token: string) {
-  const res = await fetch(`${getApiBaseUrl()}/events/bulk`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ events }),
-  });
-  const data = await res.json();
-  if (!res.ok) {
-    throw new Error(data.message || "Failed to bulk create events");
-  }
-  return data;
-}
-
 export async function updateEvent(id: string, eventData: Partial<EventItem>, token: string) {
   const res = await fetch(`${getApiBaseUrl()}/events/${id}`, {
     method: "PUT",
@@ -152,24 +134,11 @@ export async function fetchProjects(): Promise<ProjectItem[]> {
       throw new Error(`Error status ${res.status}`);
     }
     const data = await res.json();
-    if (data.data && Array.isArray(data.data) && data.data.length > 0) {
-      return data.data;
-    }
+    return data.data || [];
   } catch (error) {
-    console.warn("Failed to fetch projects from backend API, using fallback projects.json:", error);
+    console.warn("Failed to fetch projects from backend API:", error);
+    return [];
   }
-
-  // Fallback to projects.json
-  return (projectsFallback as any[]).map((p, idx) => ({
-    _id: String(idx + 1),
-    title: p.title,
-    description: p.description,
-    techStack: p.techStack || p.tags || [],
-    domain: p.domain || p.category || "Web Development",
-    linkedinUrl: p.linkedinUrl || "",
-    githubLink: p.githubLink || p.githubUrl || "",
-    liveLink: p.liveLink || p.liveUrl || "",
-  }));
 }
 
 export async function createProject(projectData: Partial<ProjectItem>, token: string) {
@@ -217,3 +186,86 @@ export async function deleteProject(id: string, token: string) {
   }
   return data;
 }
+
+/* Team Member APIs */
+export interface TeamMemberItem {
+  _id?: string;
+  id?: string;
+  name: string;
+  category: "core" | "coordinator";
+  role?: string;
+  domain?: string;
+  photo?: string;
+  bio?: string;
+  linkedin?: string;
+  github?: string;
+  order?: number;
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export async function fetchTeamMembers(category?: string): Promise<TeamMemberItem[]> {
+  try {
+    const baseUrl = getApiBaseUrl();
+    const url = category
+      ? `${baseUrl}/team?category=${encodeURIComponent(category)}`
+      : `${baseUrl}/team`;
+
+    const res = await fetch(url, { next: { revalidate: 30 } });
+    if (!res.ok) {
+      throw new Error(`Error status ${res.status}`);
+    }
+    const data = await res.json();
+    return data.data || [];
+  } catch (error) {
+    console.warn("Failed to fetch team members from backend API:", error);
+    return [];
+  }
+}
+
+export async function createTeamMember(memberData: Partial<TeamMemberItem>, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/team`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(memberData),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to create team member");
+  }
+  return data;
+}
+
+export async function updateTeamMember(id: string, memberData: Partial<TeamMemberItem>, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/team/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(memberData),
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to update team member");
+  }
+  return data;
+}
+
+export async function deleteTeamMember(id: string, token: string) {
+  const res = await fetch(`${getApiBaseUrl()}/team/${id}`, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to delete team member");
+  }
+  return data;
+}
+

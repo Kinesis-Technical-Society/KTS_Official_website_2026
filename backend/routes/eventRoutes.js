@@ -128,57 +128,6 @@ router.post("/", authMiddleware, async (req, res) => {
 });
 
 /**
- * @route   POST /api/events/bulk
- * @desc    Create multiple events at once (Bulk insertion)
- * @access  Private (Admin)
- */
-router.post("/bulk", authMiddleware, async (req, res) => {
-  try {
-    const { events } = req.body;
-
-    if (!Array.isArray(events) || events.length === 0) {
-      return res.status(400).json({
-        success: false,
-        message: "Please provide an array of events under key 'events'.",
-      });
-    }
-
-    const formattedEvents = events.map((item) => ({
-      title: item.title,
-      date: item.date,
-      status: item.status || "upcoming",
-      description: item.description,
-      location: item.location || "KIET Group of Institutions, Ghaziabad",
-      moreInfoUrl: item.moreInfoUrl || item.link || "",
-      prize: item.prize || "",
-      tags: Array.isArray(item.tags) ? item.tags : typeof item.tags === "string" ? item.tags.split(",").map((t) => t.trim()).filter(Boolean) : [],
-      highlights: Array.isArray(item.highlights) ? item.highlights : typeof item.highlights === "string" ? item.highlights.split("\n").map((h) => h.trim()).filter(Boolean) : [],
-      image: item.image || "",
-      accent: item.accent || "#bcf954",
-      gradient: item.gradient || "linear-gradient(135deg,#0a1a02 0%,#0e0e0e 100%)",
-      participants: item.participants ? Number(item.participants) : 0,
-      photos: Array.isArray(item.photos) ? item.photos : [],
-    }));
-
-    const insertedEvents = await Event.insertMany(formattedEvents);
-    clearCache("/api/events");
-
-    return res.status(201).json({
-      success: true,
-      message: `Successfully created ${insertedEvents.length} events!`,
-      count: insertedEvents.length,
-      data: insertedEvents,
-    });
-  } catch (error) {
-    return res.status(500).json({
-      success: false,
-      message: "Failed to bulk create events",
-      error: error.message,
-    });
-  }
-});
-
-/**
  * @route   PUT /api/events/:id
  * @desc    Update an existing event
  * @access  Private (Admin)

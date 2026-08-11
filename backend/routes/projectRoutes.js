@@ -1,35 +1,106 @@
 const express = require("express");
-const fs = require("fs");
-const path = require("path");
 const Project = require("../models/Project");
 const authMiddleware = require("../middleware/authMiddleware");
 const { cacheMiddleware, clearCache } = require("../middleware/cacheMiddleware");
 const router = express.Router();
+
+const DEFAULT_PROJECTS = [
+  {
+    title: "StudyNotion – Learning Management System",
+    description: "A comprehensive LMS platform for online learning with course management",
+    techStack: ["React", "Node.js", "Tailwind", "NodeMailer"],
+    liveLink: "https://studynotion-yash-aggarwal.vercel.app/",
+    githubLink: "https://github.com/yash-070702/StudyNotion",
+    domain: "Web Development",
+    linkedinUrl: "https://www.linkedin.com/in/yash-kumar-aggarwal-519658265/",
+  },
+  {
+    title: "AlgoFlow – DSA Algorithm Visualizer",
+    description: "Interactive visualization tool for data structures and algorithms with step-by-step animations.",
+    techStack: ["Next.js", "Node.js", "Tailwind", "Animater"],
+    liveLink: "https://algo-flow-nine.vercel.app/",
+    githubLink: "https://github.com/Shivendra-11/AlgoFlow",
+    domain: "Web Development",
+    linkedinUrl: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
+  },
+  {
+    title: "TicketEase – Ticket Exchange Platform",
+    description: "Peer-to-peer ticket marketplace for buying and selling event tickets securely with verification and services.",
+    techStack: ["React", "Node.js", "Tailwind", "NodeMailer"],
+    liveLink: "https://ticket-ease-frontend-apx2.vercel.app/",
+    githubLink: "https://github.com/Shivendra-11/TicketEase_Frontend",
+    domain: "Web Development",
+    linkedinUrl: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
+  },
+  {
+    title: "CodeSync – Real-time Collaborative Code Editor",
+    description: "Multi-developer coding platform with live collaboration, instant synchronization.",
+    techStack: ["Python", "MediaPipe", "OpenCV", "Streamlit"],
+    liveLink: "https://unified-code-client.vercel.app/",
+    githubLink: "https://github.com/yash-070702/Codehive",
+    domain: "Web Development",
+    linkedinUrl: "https://www.linkedin.com/in/yash-kumar-aggarwal-519658265/",
+  },
+  {
+    title: "DevLinker – Seniors to Juniors Connection Platform",
+    description: "A platform that connects seniors with juniors to help them learn new skills and share knowledge.",
+    techStack: ["React", "Node.js", "Tailwind", "NodeMailer"],
+    githubLink: "https://github.com/Shivendra-11/devTinder-web-UI",
+    domain: "Web Development",
+    linkedinUrl: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
+  },
+  {
+    title: "PoseFit – Yoga Posture Correction",
+    description: "A pose detection system using MediaPipe and custom ML model to give real-time feedback on yoga posture correctness.",
+    techStack: ["Python", "MediaPipe", "OpenCV", "Streamlit"],
+    liveLink: "https://posefityoga.netlify.app/",
+    githubLink: "https://github.com/VashuJain2024/PoseFit_Yoga",
+    domain: "Machine Learning",
+    linkedinUrl: "https://www.linkedin.com/in/vashujain/",
+  },
+  {
+    title: "AI Recommendation Music System",
+    description: "Intelligent music discovery platform using machine learning algorithms for personalized song recommendations.",
+    techStack: ["Python", "MediaPipe", "OpenCV", "Streamlit"],
+    githubLink: "https://github.com/srisheph/Promptune",
+    domain: "Machine Learning",
+    linkedinUrl: "https://www.linkedin.com/in/srisheph/",
+  },
+  {
+    title: "Intrusion Detection System",
+    description: "Advanced network security solution that monitors and analyzes network traffic to detect threats.",
+    techStack: ["Python", "MediaPipe", "OpenCV", "Streamlit"],
+    githubLink: "https://github.com/aniketyadav-22/Intrusion-Detection-System",
+    domain: "Machine Learning",
+    linkedinUrl: "https://www.linkedin.com/in/aniket-yadav-work22/",
+  },
+  {
+    title: "Pixel-to-Code Portfolio Converter",
+    description: "UI/UX design to code conversion tool that transforms portfolio designs into fully functional responsive websites.",
+    techStack: ["UI/UX", "Figma", "Adobe XD"],
+    liveLink: "https://www.figma.com/proto/siKSnPnIRlV6l2LINvHaGX/Untitled?node-id=1-2",
+    domain: "UI/UX",
+    linkedinUrl: "https://www.linkedin.com/in/shivendra-keshari-46aa67256/",
+  },
+];
 
 // Helper to seed initial projects if collection is empty
 const seedInitialProjectsIfEmpty = async () => {
   try {
     const count = await Project.countDocuments();
     if (count === 0) {
-      // Read initial projects from projects.json
-      const jsonPath = path.join(__dirname, "../../frontend/app/data/projects.json");
-      if (fs.existsSync(jsonPath)) {
-        const rawData = fs.readFileSync(jsonPath, "utf-8");
-        const initialProjects = JSON.parse(rawData);
+      const formatted = DEFAULT_PROJECTS.map((p) => ({
+        title: p.title,
+        description: p.description,
+        techStack: Array.isArray(p.techStack) ? p.techStack : [],
+        domain: p.domain || "Web Development",
+        linkedinUrl: p.linkedinUrl || "",
+        githubLink: p.githubLink || "",
+        liveLink: p.liveLink || "",
+      }));
 
-        const formatted = initialProjects.map((p) => ({
-          title: p.title,
-          description: p.description,
-          techStack: Array.isArray(p.techStack) ? p.techStack : (p.techStack ? p.techStack.split(",").map((s) => s.trim()) : []),
-          domain: p.domain || "Web Development",
-          linkedinUrl: p.linkedinUrl || "",
-          githubLink: p.githubLink || p.githubUrl || "",
-          liveLink: p.liveLink || p.liveUrl || "",
-        }));
-
-        await Project.insertMany(formatted);
-        console.log(`[Seed] Initialized database with ${formatted.length} projects from projects.json`);
-      }
+      await Project.insertMany(formatted);
+      console.log(`[Seed] Initialized database with ${formatted.length} default projects into MongoDB.`);
     }
   } catch (err) {
     console.warn("Failed to seed initial projects:", err.message);

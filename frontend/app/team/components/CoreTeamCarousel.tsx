@@ -1,6 +1,6 @@
 "use client";
-import { useState } from "react";
-import coreTeamData from "../../data/coreteam.json";
+import { useState, useEffect } from "react";
+import { fetchTeamMembers } from "../../services/api";
 
 interface Person {
   name: string;
@@ -10,8 +10,6 @@ interface Person {
   github?: string;
   photo?: string;
 }
-
-const coreTeam: Person[] = coreTeamData;
 
 function LinkedInIcon({ className = "h-4 w-4" }: { className?: string }) {
   return (
@@ -55,11 +53,37 @@ const animStyles = `
 `;
 
 export default function CoreTeamCarousel() {
+  const [coreTeam, setCoreTeam] = useState<Person[]>([]);
+  const [loading, setLoading] = useState(true);
   const [current, setCurrent] = useState(0);
   const [animState, setAnimState] = useState<AnimState>("idle");
 
+  useEffect(() => {
+    async function loadData() {
+      try {
+        const dbMembers = await fetchTeamMembers("core");
+        if (dbMembers && dbMembers.length > 0) {
+          const formatted: Person[] = dbMembers.map((m) => ({
+            name: m.name,
+            role: m.role || "Core Member",
+            bio: m.bio || "",
+            photo: m.photo || "",
+            linkedin: m.linkedin || "",
+            github: m.github || "",
+          }));
+          setCoreTeam(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to load core team from API:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
+  }, []);
+
   const go = (nextIndex: number, dir: "right" | "left") => {
-    if (animState !== "idle") return;
+    if (animState !== "idle" || coreTeam.length === 0) return;
 
     setAnimState(dir === "right" ? "out-left" : "out-right");
 
@@ -70,14 +94,41 @@ export default function CoreTeamCarousel() {
     }, 300);
   };
 
-  const next = () => go((current + 1) % coreTeam.length, "right");
-  const prev = () => go((current - 1 + coreTeam.length) % coreTeam.length, "left");
+  const next = () => {
+    if (coreTeam.length === 0) return;
+    go((current + 1) % coreTeam.length, "right");
+  };
+
+  const prev = () => {
+    if (coreTeam.length === 0) return;
+    go((current - 1 + coreTeam.length) % coreTeam.length, "left");
+  };
 
   const animClass =
     animState === "out-left"  ? "anim-rotate-out-left"  :
     animState === "in-right"  ? "anim-rotate-in-right"  :
     animState === "out-right" ? "anim-rotate-out-right" :
     animState === "in-left"   ? "anim-rotate-in-left"   : "";
+
+  if (loading) {
+    return (
+      <div className="flex justify-center">
+        <div className="w-full max-w-4xl rounded-3xl border-2 border-zinc-900 bg-white p-8 dark:border-zinc-200/30 dark:bg-[#151515] animate-pulse min-h-[300px] flex items-center justify-center">
+          <p className="text-sm font-bold text-zinc-500">Loading Core Team from database...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (coreTeam.length === 0) {
+    return (
+      <div className="flex justify-center">
+        <div className="w-full max-w-4xl rounded-3xl border-2 border-zinc-900 bg-white p-8 dark:border-zinc-200/30 dark:bg-[#151515] min-h-[200px] flex items-center justify-center">
+          <p className="text-sm font-bold text-zinc-500">No core team members found in database.</p>
+        </div>
+      </div>
+    );
+  }
 
   const person = coreTeam[current];
 

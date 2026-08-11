@@ -5,7 +5,6 @@ import {
   loginAdmin,
   fetchEvents,
   createEvent,
-  bulkCreateEvents,
   updateEvent,
   deleteEvent,
   EventItem,
@@ -14,6 +13,11 @@ import {
   updateProject,
   deleteProject,
   ProjectItem,
+  fetchTeamMembers,
+  createTeamMember,
+  updateTeamMember,
+  deleteTeamMember,
+  TeamMemberItem,
 } from "../services/api";
 
 import { AdminLoginForm } from "./components/AdminLoginForm";
@@ -21,11 +25,13 @@ import { AdminHeader } from "./components/AdminHeader";
 import { AdminNavTabs, AdminTab } from "./components/AdminNavTabs";
 import { EventListTab } from "./components/EventListTab";
 import { EventFormTab } from "./components/EventFormTab";
-import { EventBulkTab } from "./components/EventBulkTab";
 import { ProjectListTab } from "./components/ProjectListTab";
 import { ProjectFormTab } from "./components/ProjectFormTab";
 import { EventEditModal } from "./components/EventEditModal";
 import { ProjectEditModal } from "./components/ProjectEditModal";
+import { TeamListTab } from "./components/TeamListTab";
+import { TeamFormTab } from "./components/TeamFormTab";
+import { TeamEditModal } from "./components/TeamEditModal";
 
 export default function AdminPage() {
   // Auth state
@@ -67,20 +73,6 @@ export default function AdminPage() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Bulk events input state
-  const [bulkJson, setBulkJson] = useState(`[
-  {
-    "title": "HackKTS 2026 — 24 Hour Hackathon",
-    "date": "March 28–29, 2026",
-    "status": "upcoming",
-    "description": "Join the biggest student hackathon at KIET! Build innovative web and AI projects.",
-    "location": "KIET Campus, Ghaziabad",
-    "moreInfoUrl": "https://kts-hackathon.devfolio.co",
-    "prize": "₹50,000 Pool + Swags",
-    "tags": ["Hackathon", "AI", "Web3"]
-  }
-]`);
-
   // Projects Data State
   const [projects, setProjects] = useState<ProjectItem[]>([]);
   const [loadingProjects, setLoadingProjects] = useState(false);
@@ -100,14 +92,35 @@ export default function AdminPage() {
     liveLink: "",
   });
 
-  // Helper for reading image files as Base64 Data URLs
+  // Team Data State
+  const [teamMembers, setTeamMembers] = useState<TeamMemberItem[]>([]);
+  const [loadingTeam, setLoadingTeam] = useState(false);
+  const [teamSearchQuery, setTeamSearchQuery] = useState<string>("");
+  const [teamCategoryFilter, setTeamCategoryFilter] = useState<string>("all");
+  const [editingTeamMember, setEditingTeamMember] = useState<TeamMemberItem | null>(null);
+  const [isSubmittingTeam, setIsSubmittingTeam] = useState(false);
+
+  // Team creation form state
+  const [teamFormData, setTeamFormData] = useState({
+    name: "",
+    category: "coordinator" as "core" | "coordinator",
+    role: "",
+    domain: "Web",
+    photo: "",
+    bio: "",
+    linkedin: "",
+    github: "",
+  });
+
+  // Helper for reading image files as Base64 Data URLs (only .webp, size < 1MB)
   const handleImageFileRead = (file: File, callback: (base64Url: string) => void) => {
-    if (!file.type.startsWith("image/")) {
-      showNotify("error", "Please select a valid image file (PNG, JPG, WEBP, GIF, SVG).");
+    const isWebp = file.type === "image/webp" || file.name.toLowerCase().endsWith(".webp");
+    if (!isWebp) {
+      showNotify("error", "Only .webp images are allowed to upload.");
       return;
     }
-    if (file.size > 6 * 1024 * 1024) {
-      showNotify("error", "Image size is too large (max 6MB). Please pick a smaller image.");
+    if (file.size > 1 * 1024 * 1024) {
+      showNotify("error", "Image size must be less than 1MB size. Please upload a smaller .webp image.");
       return;
     }
     const reader = new FileReader();
@@ -135,6 +148,7 @@ export default function AdminPage() {
     if (token) {
       loadAdminEvents();
       loadAdminProjects();
+      loadAdminTeamMembers();
     }
   }, [token]);
 
@@ -159,6 +173,18 @@ export default function AdminPage() {
       showNotify("error", err.message || "Failed to load projects.");
     } finally {
       setLoadingProjects(false);
+    }
+  };
+
+  const loadAdminTeamMembers = async () => {
+    setLoadingTeam(true);
+    try {
+      const data = await fetchTeamMembers();
+      setTeamMembers(data);
+    } catch (err: any) {
+      showNotify("error", err.message || "Failed to load team members.");
+    } finally {
+      setLoadingTeam(false);
     }
   };
 
@@ -228,27 +254,6 @@ export default function AdminPage() {
       loadAdminEvents();
     } catch (err: any) {
       showNotify("error", err.message || "Failed to create event");
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
-  const handleBulkSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!token) return;
-    setIsSubmitting(true);
-
-    try {
-      const parsed = JSON.parse(bulkJson);
-      if (!Array.isArray(parsed)) {
-        throw new Error("JSON input must be an array of event objects.");
-      }
-      await bulkCreateEvents(parsed, token);
-      showNotify("success", `Successfully added ${parsed.length} events!`);
-      setActiveTab("list");
-      loadAdminEvents();
-    } catch (err: any) {
-      showNotify("error", err.message || "Invalid JSON or Bulk Creation Error");
     } finally {
       setIsSubmitting(false);
     }
@@ -426,7 +431,84 @@ export default function AdminPage() {
     }
   };
 
-  // Filter events & projects
+  // Team Member handlers
+  const handleCreateTeamSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!token) return;
+
+    const name = teamFormData.name.trim();
+    if (!name) {
+      showNotify("error", "Member name is required.");
+      return;
+    }
+
+    setIsSubmittingTeam(true);
+
+    try {
+      await createTeamMember(teamFormData, token);
+      showNotify("success", `Team Member "${name}" added successfully!`);
+
+      setTeamFormData({
+        name: "",
+        category: "coordinator",
+        role: "",
+        domain: "Web",
+        photo: "",
+        bio: "",
+        linkedin: "",
+        github: "",
+      });
+
+      setActiveTab("team-list");
+      loadAdminTeamMembers();
+    } catch (err: any) {
+      showNotify("error", err.message || "Failed to create team member");
+    } finally {
+      setIsSubmittingTeam(false);
+    }
+  };
+
+  const handleUpdateTeamSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const memberId = editingTeamMember?._id || editingTeamMember?.id;
+    if (!token || !editingTeamMember || !memberId) {
+      showNotify("error", "Unable to update: Invalid team member ID.");
+      return;
+    }
+
+    setIsSubmittingTeam(true);
+
+    try {
+      await updateTeamMember(String(memberId), editingTeamMember, token);
+      showNotify("success", "Team member updated successfully!");
+      setEditingTeamMember(null);
+      loadAdminTeamMembers();
+    } catch (err: any) {
+      showNotify("error", err.message || "Failed to update team member");
+    } finally {
+      setIsSubmittingTeam(false);
+    }
+  };
+
+  const handleDeleteTeamMember = async (member: TeamMemberItem) => {
+    const memberId = member._id || member.id;
+    if (!token || !memberId) {
+      showNotify("error", "Unable to delete: Invalid team member ID.");
+      return;
+    }
+    const confirmDelete = window.confirm(`Are you sure you want to delete "${member.name}"?`);
+    if (!confirmDelete) return;
+
+    try {
+      await deleteTeamMember(String(memberId), token);
+      showNotify("success", "Team member deleted successfully!");
+      loadAdminTeamMembers();
+    } catch (err: any) {
+      showNotify("error", err.message || "Failed to delete team member");
+    }
+  };
+
+  // Filter events, projects & team members
   const filteredEvents = events.filter((ev) => {
     const matchesStatus = statusFilter === "all" || ev.status === statusFilter;
     const matchesSearch =
@@ -451,6 +533,17 @@ export default function AdminPage() {
   const projectDomains = Array.from(
     new Set(projects.map((p) => p.domain).filter(Boolean))
   );
+
+  const filteredTeamMembers = teamMembers.filter((m) => {
+    const matchesCategory =
+      teamCategoryFilter === "all" || m.category === teamCategoryFilter;
+    const matchesSearch =
+      m.name.toLowerCase().includes(teamSearchQuery.toLowerCase()) ||
+      (m.role || "").toLowerCase().includes(teamSearchQuery.toLowerCase()) ||
+      (m.domain || "").toLowerCase().includes(teamSearchQuery.toLowerCase()) ||
+      (m.bio || "").toLowerCase().includes(teamSearchQuery.toLowerCase());
+    return matchesCategory && matchesSearch;
+  });
 
   // Render Login Form if unauthenticated
   if (!token) {
@@ -493,6 +586,7 @@ export default function AdminPage() {
           setActiveTab={setActiveTab}
           eventsCount={events.length}
           projectsCount={projects.length}
+          teamCount={teamMembers.length}
         />
 
         {/* Tab 1: Events List */}
@@ -516,16 +610,6 @@ export default function AdminPage() {
             setFormData={setFormData}
             handleImageFileRead={handleImageFileRead}
             onSubmit={handleCreateSubmit}
-            isSubmitting={isSubmitting}
-          />
-        )}
-
-        {/* Tab 3: Bulk Import Events */}
-        {activeTab === "bulk" && (
-          <EventBulkTab
-            bulkJson={bulkJson}
-            setBulkJson={setBulkJson}
-            onSubmit={handleBulkSubmit}
             isSubmitting={isSubmitting}
           />
         )}
@@ -554,6 +638,31 @@ export default function AdminPage() {
             isSubmittingProject={isSubmittingProject}
           />
         )}
+
+        {/* Tab 6: Team List */}
+        {activeTab === "team-list" && (
+          <TeamListTab
+            teamSearchQuery={teamSearchQuery}
+            setTeamSearchQuery={setTeamSearchQuery}
+            teamCategoryFilter={teamCategoryFilter}
+            setTeamCategoryFilter={setTeamCategoryFilter}
+            loadingTeam={loadingTeam}
+            filteredMembers={filteredTeamMembers}
+            onEdit={setEditingTeamMember}
+            onDelete={handleDeleteTeamMember}
+          />
+        )}
+
+        {/* Tab 7: Create Team Member */}
+        {activeTab === "create-team" && (
+          <TeamFormTab
+            teamFormData={teamFormData}
+            setTeamFormData={setTeamFormData}
+            handleImageFileRead={handleImageFileRead}
+            onSubmit={handleCreateTeamSubmit}
+            isSubmittingTeam={isSubmittingTeam}
+          />
+        )}
       </div>
 
       {/* Edit Event Modal */}
@@ -573,6 +682,17 @@ export default function AdminPage() {
           setProject={setEditingProject}
           onSubmit={handleUpdateProjectSubmit}
           isSubmitting={isSubmittingProject}
+        />
+      )}
+
+      {/* Edit Team Member Modal */}
+      {editingTeamMember && (
+        <TeamEditModal
+          member={editingTeamMember}
+          setMember={setEditingTeamMember}
+          handleImageFileRead={handleImageFileRead}
+          onSubmit={handleUpdateTeamSubmit}
+          isSubmitting={isSubmittingTeam}
         />
       )}
     </main>

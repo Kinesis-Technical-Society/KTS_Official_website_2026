@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import coordinatorsData from "../../data/coordinators.json";
+import { fetchTeamMembers } from "../../services/api";
 
 export type DomainType = "All" | "Web" | "Android" | "ML" | "DSA" | "UIUX";
 
@@ -14,8 +14,6 @@ export interface CoordinatorPerson {
   linkedin?: string;
   github?: string;
 }
-
-const coordinators: CoordinatorPerson[] = coordinatorsData as CoordinatorPerson[];
 
 const DOMAINS: { id: DomainType; label: string }[] = [
   { id: "All", label: "All Domains" },
@@ -57,18 +55,42 @@ const normalizeDomain = (domain: string): DomainType | null => {
 
 export default function CoordinatorsCarousel() {
   const [mounted, setMounted] = useState(false);
+  const [coordinators, setCoordinators] = useState<CoordinatorPerson[]>([]);
+  const [loading, setLoading] = useState(true);
   const [selectedDomain, setSelectedDomain] = useState<DomainType>("All");
   const [currentIndex, setCurrentIndex] = useState(0);
 
   useEffect(() => {
     setMounted(true);
+    async function loadData() {
+      try {
+        const dbMembers = await fetchTeamMembers("coordinator");
+        if (dbMembers && dbMembers.length > 0) {
+          const formatted: CoordinatorPerson[] = dbMembers.map((m) => ({
+            name: m.name,
+            role: (m.role as any) || "Coordinator",
+            domain: (m.domain as any) || "Web",
+            photo: m.photo || "",
+            bio: m.bio || "",
+            linkedin: m.linkedin || "",
+            github: m.github || "",
+          }));
+          setCoordinators(formatted);
+        }
+      } catch (err) {
+        console.error("Failed to load coordinators from API:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadData();
   }, []);
 
   // Filter list by selected domain
   const filteredList = useMemo(() => {
     if (selectedDomain === "All") return coordinators;
     return coordinators.filter((item) => normalizeDomain(item.domain) === selectedDomain);
-  }, [selectedDomain]);
+  }, [selectedDomain, coordinators]);
 
   // Calculate count for domain tabs
   const domainCounts = useMemo(() => {
@@ -87,7 +109,7 @@ export default function CoordinatorsCarousel() {
       }
     });
     return counts;
-  }, []);
+  }, [coordinators]);
 
   const handleDomainChange = (domain: DomainType) => {
     setSelectedDomain(domain);
