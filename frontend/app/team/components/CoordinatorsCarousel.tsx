@@ -188,8 +188,8 @@ export default function CoordinatorsCarousel() {
           <div
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-300"
           >
-            {/* Show a sliding window of cards centered at currentIndex */}
-            {[0, 1, 2].map((offset) => {
+            {/* Show unique visible cards up to available members count (max 3) */}
+            {Array.from({ length: Math.min(3, filteredList.length) }).map((_, offset) => {
               const idx = (currentIndex + offset) % filteredList.length;
               const person = filteredList[idx];
 
