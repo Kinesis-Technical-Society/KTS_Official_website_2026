@@ -31,6 +31,9 @@ if (isProd && cluster.isPrimary) {
 } else {
   const app = express();
 
+  // Render runs behind a reverse proxy
+  app.set("trust proxy", 1);
+
   // Security HTTP Headers
   app.use(helmet({ contentSecurityPolicy: false }));
 
